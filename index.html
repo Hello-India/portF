@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Binary Quest Portfolio</title>
 
-  <!-- Montserrat font -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet" />
+  <!-- Fonts -->
+  <!-- Sreda + Montserrat fallback -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Sreda&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -23,8 +24,9 @@
         <li><a href="#about">About</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#studies">Studies</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#experience">Experience</a></li>
         <li><a href="#support">Support</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>
   </header>
@@ -35,16 +37,19 @@
       <h1>Hello, I’m <span>Binary Quest</span></h1>
       <p>Welcome to my portfolio, where creativity meets clean code.</p>
     </div>
-    <button id="scroll-down-btn" aria-label="Scroll down to About Me">↓ Scroll Down ↓</button>
+    <button id="scroll-down-btn" aria-label="Scroll down to About Me">
+      <span class="scroll-text">scroll down</span>
+      <span class="scroll-circle"><span class="arrow">v</span></span>
+    </button>
   </section>
 
   <!-- About Section -->
-  <section id="about" class="page-section about-section roll-animation">
+  <section id="about" class="page-section about-section">
     <div class="about-image-container">
       <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=600&q=80" alt="Portrait of Binary Quest" />
     </div>
     <div class="about-text">
-      <h2>About Me</h2>
+      <h2 class="section-title">About Me</h2>
       <p>
         I’m a passionate web developer and cybersecurity enthusiast dedicated to building secure, intuitive, and beautiful digital experiences. I combine clean, efficient code with creative design principles to deliver solutions that not only function flawlessly but also delight users visually.
       </p>
@@ -55,7 +60,7 @@
   </section>
 
   <!-- Projects Section -->
-  <section id="projects" class="page-section projects-section flip-animation">
+  <section id="projects" class="page-section projects-section">
     <h2 class="section-title">Projects</h2>
     <div class="projects-grid">
       <div class="project-card closed" tabindex="0" aria-label="Resume Builder Project">
@@ -122,31 +127,43 @@
   </section>
 
   <!-- Studies Section -->
-  <section id="studies" class="page-section studies-section cube-animation">
-    <div class="study-container">
-      <div class="study-box tilt" id="study-box">
+  <section id="studies" class="page-section studies-section">
+
+    <div class="studies-container">
+      <div class="study-box left-box">
         <h2>OXFORD UNIVERSITY</h2>
         <h3>B.Tech in Computer Science & Engineering</h3>
         <p>Graduated with perfect 10 CGPA - a hallmark of dedication and excellence.</p>
       </div>
-      <button id="next-study-btn" aria-label="Next Study">Next &rarr;</button>
+      <div class="study-box right-box">
+        <h2>KENDRIYA VIDYALAYA</h2>
+        <h3>High School - PCM</h3>
+        <p>Completed rigorous academics in Physics, Chemistry, and Mathematics with flying colors.</p>
+      </div>
     </div>
   </section>
 
-  <!-- Contact Section -->
-  <section id="contact" class="page-section contact-section roll-animation">
-    <h2>Contact Me</h2>
-    <ul class="contact-list">
-      <li><strong>GitHub:</strong> github.com/binary-quest</li>
-      <li><strong>Telegram:</strong> @BinaryQuest</li>
-      <li><strong>Instagram:</strong> Coming Soon</li>
-      <li><strong>Email:</strong> Coming Soon</li>
-    </ul>
+  <!-- Experience Section -->
+  <section id="experience" class="page-section experience-section">
+    <h2 class="section-title">Experience</h2>
+    <div class="experience-scroll-container">
+      <div class="experience-box circular-scroll closed" tabindex="0" aria-label="Freelance Web Development Experience">
+        <img src="https://images.unsplash.com/photo-1506765515384-028b60a970df?auto=format&fit=crop&w=600&q=80" alt="Web development" />
+        <h3>10+ Web Development Projects</h3>
+        <p>Certified experience freelancing building sleek and responsive websites for clients worldwide.</p>
+      </div>
+
+      <div class="experience-box circular-scroll closed" tabindex="0" aria-label="Bot Coding Experience">
+        <img src="https://images.unsplash.com/photo-1547658719-da2b511691a3?auto=format&fit=crop&w=600&q=80" alt="Bot coding" />
+        <h3>Super Amazing Bot Coding & Hosting</h3>
+        <p>Coding and hosting innovative bots for 5+ years, specializing in automation and intelligent integrations.</p>
+      </div>
+    </div>
   </section>
 
   <!-- Support Section -->
-  <section id="support" class="page-section support-section rotate-animation">
-    <h2>Support Me</h2>
+  <section id="support" class="page-section support-section">
+    <h2 class="section-title">Support Me</h2>
     <div class="support-content">
       <div class="qr-code">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/UPI_QR_Code.webp/240px-UPI_QR_Code.webp.png" alt="UPI QR Code" />
@@ -156,6 +173,17 @@
         <p>Thank you for your support!</p>
       </div>
     </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="page-section contact-section">
+    <h2 class="section-title">Contact Me</h2>
+    <ul class="contact-list">
+      <li><strong>GitHub:</strong> github.com/binary-quest</li>
+      <li><strong>Telegram:</strong> @BinaryQuest</li>
+      <li><strong>Instagram:</strong> Coming Soon</li>
+      <li><strong>Email:</strong> Coming Soon</li>
+    </ul>
   </section>
 
   <footer>
