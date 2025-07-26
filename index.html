@@ -6,8 +6,7 @@
   <title>Binary Quest Portfolio</title>
 
   <!-- Fonts -->
-  <!-- Sreda + Montserrat fallback -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Sreda&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Naluka&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -39,14 +38,16 @@
     </div>
     <button id="scroll-down-btn" aria-label="Scroll down to About Me">
       <span class="scroll-text">scroll down</span>
-      <span class="scroll-circle"><span class="arrow">v</span></span>
     </button>
   </section>
 
   <!-- About Section -->
   <section id="about" class="page-section about-section">
-    <div class="about-image-container">
-      <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=600&q=80" alt="Portrait of Binary Quest" />
+    <div class="about-image-wr">
+      <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=600&q=80" alt="Portrait of Binary Quest" class="blurred-image" />
+      <div class="image-overlay">
+        <p class="overlay-text">Click to view</p>
+      </div>
     </div>
     <div class="about-text">
       <h2 class="section-title">About Me</h2>
@@ -63,65 +64,30 @@
   <section id="projects" class="page-section projects-section">
     <h2 class="section-title">Projects</h2>
     <div class="projects-grid">
-      <div class="project-card closed" tabindex="0" aria-label="Resume Builder Project">
-        <div class="project-front">
-          <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="Resume Builder" />
-          <h3>Resume Builder</h3>
-          <p>Craft professional resumes effortlessly with sleek templates.</p>
-        </div>
-        <div class="project-back">
-          <p>
-            A clean and interactive tool to create customizable resumes with drag-and-drop editing and instant downloads.
-          </p>
-        </div>
+      <div class="project-card zoom-transition closed" tabindex="0" aria-label="Resume Builder Project">
+        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="Resume Builder" />
+        <h3>Resume Builder</h3>
+        <p>Craft professional resumes effortlessly with sleek templates.</p>
       </div>
-      <div class="project-card closed" tabindex="0" aria-label="API Explorer Project">
-        <div class="project-front">
-          <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80" alt="API Explorer" />
-          <h3>API Explorer</h3>
-          <p>Test, authenticate, and learn various public APIs with ease.</p>
-        </div>
-        <div class="project-back">
-          <p>
-            Interactive platform to explore live API calls with response visualization, supporting developers to experiment and learn.
-          </p>
-        </div>
+      <div class="project-card zoom-transition closed" tabindex="0" aria-label="API Explorer Project">
+        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80" alt="API Explorer" />
+        <h3>API Explorer</h3>
+        <p>Test, authenticate, and learn various public APIs with ease.</p>
       </div>
-      <div class="project-card closed" tabindex="0" aria-label="CyberShield Project">
-        <div class="project-front">
-          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80" alt="CyberShield Dashboard" />
-          <h3>CyberShield</h3>
-          <p>Real-time cybersecurity monitoring with visual alerts and analytics.</p>
-        </div>
-        <div class="project-back">
-          <p>
-            Enterprise-grade dashboard tracking network threats and activity with customizable profiles and analytics.
-          </p>
-        </div>
+      <div class="project-card zoom-transition closed" tabindex="0" aria-label="CyberShield Project">
+        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80" alt="CyberShield Dashboard" />
+        <h3>CyberShield</h3>
+        <p>Real-time cybersecurity monitoring with visual alerts and analytics.</p>
       </div>
-      <div class="project-card closed" tabindex="0" aria-label="Task Tracker Project">
-        <div class="project-front">
-          <img src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=600&q=80" alt="Task Tracker" />
-          <h3>Task Tracker</h3>
-          <p>Manage daily to-dos with tagging, deadlines, and collaboration.</p>
-        </div>
-        <div class="project-back">
-          <p>
-            Lightweight productivity app with intuitive task management features designed for maximum efficiency.
-          </p>
-        </div>
+      <div class="project-card zoom-transition closed" tabindex="0" aria-label="Task Tracker Project">
+        <img src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=600&q=80" alt="Task Tracker" />
+        <h3>Task Tracker</h3>
+        <p>Manage daily to-dos with tagging, deadlines, and collaboration.</p>
       </div>
-      <div class="project-card closed" tabindex="0" aria-label="Crypto Insights Project">
-        <div class="project-front">
-          <img src="https://images.unsplash.com/photo-1497493292307-31c376b6e479?auto=format&fit=crop&w=600&q=80" alt="Crypto Insights" />
-          <h3>Crypto Insights</h3>
-          <p>Visualize and analyze cryptocurrency market trends in real-time.</p>
-        </div>
-        <div class="project-back">
-          <p>
-            Real-time crypto analytics dashboard with charts, historical data, and predictive insights for traders.
-          </p>
-        </div>
+      <div class="project-card zoom-transition closed" tabindex="0" aria-label="Crypto Insights Project">
+        <img src="https://images.unsplash.com/photo-1497493292307-31c376b6e479?auto=format&fit=crop&w=600&q=80" alt="Crypto Insights" />
+        <h3>Crypto Insights</h3>
+        <p>Visualize and analyze cryptocurrency market trends in real-time.</p>
       </div>
     </div>
   </section>
