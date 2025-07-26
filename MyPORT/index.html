@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Binary Quest Portfolio</title>
+
+  <!-- Montserrat font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="cursor">
+    <div class="outer"></div>
+    <div class="inner"></div>
+  </div>
+
+  <header class="sticky-nav">
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#studies">Studies</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#support">Support</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Welcome Section -->
+  <section id="welcome" class="welcome-section">
+    <div class="greeting-card">
+      <h1>Hello, I’m <span>Binary Quest</span></h1>
+      <p>Welcome to my portfolio, where creativity meets clean code.</p>
+    </div>
+    <button id="scroll-down-btn" aria-label="Scroll down to About Me">↓ Scroll Down ↓</button>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="page-section about-section roll-animation">
+    <div class="about-image-container">
+      <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?auto=format&fit=crop&w=600&q=80" alt="Portrait of Binary Quest" />
+    </div>
+    <div class="about-text">
+      <h2>About Me</h2>
+      <p>
+        I’m a passionate web developer and cybersecurity enthusiast dedicated to building secure, intuitive, and beautiful digital experiences. I combine clean, efficient code with creative design principles to deliver solutions that not only function flawlessly but also delight users visually.
+      </p>
+      <p>
+        Always curious and driven by innovation, I focus on learning emerging technologies and integrating best practices in security and usability. Join me on this journey of digital craftsmanship and problem-solving excellence.
+      </p>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="page-section projects-section flip-animation">
+    <h2 class="section-title">Projects</h2>
+    <div class="projects-grid">
+      <div class="project-card closed" tabindex="0" aria-label="Resume Builder Project">
+        <div class="project-front">
+          <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80" alt="Resume Builder" />
+          <h3>Resume Builder</h3>
+          <p>Craft professional resumes effortlessly with sleek templates.</p>
+        </div>
+        <div class="project-back">
+          <p>
+            A clean and interactive tool to create customizable resumes with drag-and-drop editing and instant downloads.
+          </p>
+        </div>
+      </div>
+      <div class="project-card closed" tabindex="0" aria-label="API Explorer Project">
+        <div class="project-front">
+          <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=600&q=80" alt="API Explorer" />
+          <h3>API Explorer</h3>
+          <p>Test, authenticate, and learn various public APIs with ease.</p>
+        </div>
+        <div class="project-back">
+          <p>
+            Interactive platform to explore live API calls with response visualization, supporting developers to experiment and learn.
+          </p>
+        </div>
+      </div>
+      <div class="project-card closed" tabindex="0" aria-label="CyberShield Project">
+        <div class="project-front">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=600&q=80" alt="CyberShield Dashboard" />
+          <h3>CyberShield</h3>
+          <p>Real-time cybersecurity monitoring with visual alerts and analytics.</p>
+        </div>
+        <div class="project-back">
+          <p>
+            Enterprise-grade dashboard tracking network threats and activity with customizable profiles and analytics.
+          </p>
+        </div>
+      </div>
+      <div class="project-card closed" tabindex="0" aria-label="Task Tracker Project">
+        <div class="project-front">
+          <img src="https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?auto=format&fit=crop&w=600&q=80" alt="Task Tracker" />
+          <h3>Task Tracker</h3>
+          <p>Manage daily to-dos with tagging, deadlines, and collaboration.</p>
+        </div>
+        <div class="project-back">
+          <p>
+            Lightweight productivity app with intuitive task management features designed for maximum efficiency.
+          </p>
+        </div>
+      </div>
+      <div class="project-card closed" tabindex="0" aria-label="Crypto Insights Project">
+        <div class="project-front">
+          <img src="https://images.unsplash.com/photo-1497493292307-31c376b6e479?auto=format&fit=crop&w=600&q=80" alt="Crypto Insights" />
+          <h3>Crypto Insights</h3>
+          <p>Visualize and analyze cryptocurrency market trends in real-time.</p>
+        </div>
+        <div class="project-back">
+          <p>
+            Real-time crypto analytics dashboard with charts, historical data, and predictive insights for traders.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Studies Section -->
+  <section id="studies" class="page-section studies-section cube-animation">
+    <div class="study-container">
+      <div class="study-box tilt" id="study-box">
+        <h2>OXFORD UNIVERSITY</h2>
+        <h3>B.Tech in Computer Science & Engineering</h3>
+        <p>Graduated with perfect 10 CGPA - a hallmark of dedication and excellence.</p>
+      </div>
+      <button id="next-study-btn" aria-label="Next Study">Next &rarr;</button>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="page-section contact-section roll-animation">
+    <h2>Contact Me</h2>
+    <ul class="contact-list">
+      <li><strong>GitHub:</strong> github.com/binary-quest</li>
+      <li><strong>Telegram:</strong> @BinaryQuest</li>
+      <li><strong>Instagram:</strong> Coming Soon</li>
+      <li><strong>Email:</strong> Coming Soon</li>
+    </ul>
+  </section>
+
+  <!-- Support Section -->
+  <section id="support" class="page-section support-section rotate-animation">
+    <h2>Support Me</h2>
+    <div class="support-content">
+      <div class="qr-code">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/UPI_QR_Code.webp/240px-UPI_QR_Code.webp.png" alt="UPI QR Code" />
+      </div>
+      <div class="upi-info">
+        <p><strong>UPI ID:</strong> binaryquest@upi</p>
+        <p>Thank you for your support!</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 Binary Quest</p>
+  </footer>
+
+  <script src="dragon.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
