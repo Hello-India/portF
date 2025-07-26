@@ -1,42 +1,43 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // === Welcome Section ===
-  // No direct JS — CSS animations handle fadeSlideUp
-
   // Scroll down button smooth scroll
   const scrollBtn = document.getElementById("scroll-down-btn");
   scrollBtn.addEventListener("click", () => {
     document.getElementById("about").scrollIntoView({ behavior: "smooth" });
   });
 
-  // === About Section ===
+  // About Image toggle blur on click
   const aboutSection = document.getElementById("about");
-  const aboutImage = aboutSection.querySelector(".about-image-container");
+  const aboutImageWrapper = aboutSection.querySelector(".about-image-wr");
+  const overlay = aboutImageWrapper.querySelector(".image-overlay");
 
-  // Fade slide animation + translucent image visibility on scroll
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if(entry.isIntersecting){
-        entry.target.style.opacity = "1";
-        entry.target.style.transform = "translateY(0)";
-        if(entry.target.id === "about"){
-          aboutImage.classList.add("visible");
-        }
+  overlay.addEventListener("click", () => {
+    overlay.classList.add("hidden");
+    aboutImageWrapper.classList.add("clear");
+  });
+
+  // About section fade slide up on scroll
+  const aboutText = aboutSection.querySelector(".about-text");
+  const aboutObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("visible");
       } else {
-        entry.target.style.opacity = "0";
-        entry.target.style.transform = "translateY(40px)";
-        if(entry.target.id === "about"){
-          aboutImage.classList.remove("visible");
-        }
+        entry.target.classList.remove("visible");
+        // Also reset image blur and overlay if scrolled up
+        overlay.classList.remove("hidden");
+        aboutImageWrapper.classList.remove("clear");
       }
     });
-  }, {threshold: 0.5});
-  revealObserver.observe(aboutSection);
+  }, {
+    threshold: 0.5
+  });
+  aboutObserver.observe(aboutSection);
 
-  // === Projects Section ===
+  // Projects Zoom in/out on scroll faster
   const projects = document.querySelectorAll(".project-card");
-  const projectObserver = new IntersectionObserver((entries) => {
+  const projObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      if(entry.isIntersecting){
+      if (entry.isIntersecting) {
         entry.target.classList.add("open");
         entry.target.classList.remove("closed");
       } else {
@@ -44,28 +45,16 @@ document.addEventListener("DOMContentLoaded", () => {
         entry.target.classList.add("closed");
       }
     });
-  }, { threshold: 0.35 });
-  projects.forEach(p => {
-    projectObserver.observe(p);
+  }, { threshold: 0.4 });
+  projects.forEach(p => projObserver.observe(p));
 
-    // Keyboard toggle flip for accessibility
-    p.addEventListener("keydown", (e) => {
-      if(e.key === "Enter" || e.key === " "){
-        e.preventDefault();
-        p.classList.toggle("flipped");
-      }
-    });
-  });
-
-
-  // === Studies Section ===
-  const leftBox = document.querySelector(".study-box.left-box");
-  const rightBox = document.querySelector(".study-box.right-box");
+  // Studies sliding left and right with visibility toggle faster
   const studiesSection = document.getElementById("studies");
-
-  const studiesObserver = new IntersectionObserver((entries) => {
+  const leftBox = studiesSection.querySelector(".left-box");
+  const rightBox = studiesSection.querySelector(".right-box");
+  const studiesObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      if(entry.isIntersecting){
+      if (entry.isIntersecting) {
         leftBox.classList.add("visible");
         rightBox.classList.add("visible");
       } else {
@@ -73,43 +62,40 @@ document.addEventListener("DOMContentLoaded", () => {
         rightBox.classList.remove("visible");
       }
     });
-  }, {threshold: 0.5});
+  }, { threshold: 0.3 });
   studiesObserver.observe(studiesSection);
 
-
-  // === Experience Section ===
+  // Experience circular open close faster
   const experiences = document.querySelectorAll(".experience-box");
-  const expObserver = new IntersectionObserver((entries) => {
+  const expObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      if(entry.isIntersecting){
+      if (entry.isIntersecting) {
         entry.target.classList.add("visible");
       } else {
         entry.target.classList.remove("visible");
       }
     });
-  }, {threshold: 0.5});
+  }, {threshold: 0.3});
   experiences.forEach(exp => expObserver.observe(exp));
 
-
-  // === Support Section Slide-in from left ===
+  // Support section slide in/out left faster
   const supportSection = document.getElementById("support");
   const supportObserver = new IntersectionObserver(entries => {
     entries.forEach(e=>{
       if(e.isIntersecting) supportSection.classList.add("visible");
       else supportSection.classList.remove("visible");
     });
-  }, {threshold: 0.5});
+  }, {threshold: 0.3});
   supportObserver.observe(supportSection);
 
-
-  // === Contact Section Slide-in from right ===
+  // Contact section slide in/out right faster
   const contactSection = document.getElementById("contact");
   const contactObserver = new IntersectionObserver(entries => {
     entries.forEach(e=>{
       if(e.isIntersecting) contactSection.classList.add("visible");
       else contactSection.classList.remove("visible");
     });
-  }, {threshold: 0.5});
+  }, {threshold: 0.3});
   contactObserver.observe(contactSection);
 
 });
