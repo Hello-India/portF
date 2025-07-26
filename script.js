@@ -1,34 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Intersection Observer for projects to open on scroll
-  const projects = document.querySelectorAll(".project-card.closed");
-  const observerOptions = {
-    root: null,
-    rootMargin: "0px",
-    threshold: 0.25,
-  };
-
-  const observerCallback = (entries, observer) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.remove("closed");
-        entry.target.classList.add("open");
-        observer.unobserve(entry.target);
-      }
-    });
-  };
-
-  const observer = new IntersectionObserver(observerCallback, observerOptions);
-  projects.forEach((p) => observer.observe(p));
-
-  // Keyboard flip toggle on projects for accessibility
-  projects.forEach((project) => {
-    project.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        project.classList.toggle("flipped");
-      }
-    });
-  });
+  // === Welcome Section ===
+  // No direct JS — CSS animations handle fadeSlideUp
 
   // Scroll down button smooth scroll
   const scrollBtn = document.getElementById("scroll-down-btn");
@@ -36,83 +8,108 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("about").scrollIntoView({ behavior: "smooth" });
   });
 
-  // Studies section cube tilt rotation effect on next button
-  const studyBox = document.getElementById("study-box");
-  const nextBtn = document.getElementById("next-study-btn");
+  // === About Section ===
+  const aboutSection = document.getElementById("about");
+  const aboutImage = aboutSection.querySelector(".about-image-container");
 
-  const studies = [
-    {
-      title: "OXFORD UNIVERSITY",
-      degree: "B.Tech in Computer Science & Engineering",
-      details:
-        "Graduated with perfect 10 CGPA - a hallmark of dedication and excellence.",
-    },
-    {
-      title: "KENDRIYA VIDYALAYA",
-      degree: "High School - PCM",
-      details:
-        "Completed rigorous academics in Physics, Chemistry, and Mathematics with flying colors.",
-    },
-  ];
-  let currentStudyIndex = 0;
+  // Fade slide animation + translucent image visibility on scroll
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if(entry.isIntersecting){
+        entry.target.style.opacity = "1";
+        entry.target.style.transform = "translateY(0)";
+        if(entry.target.id === "about"){
+          aboutImage.classList.add("visible");
+        }
+      } else {
+        entry.target.style.opacity = "0";
+        entry.target.style.transform = "translateY(40px)";
+        if(entry.target.id === "about"){
+          aboutImage.classList.remove("visible");
+        }
+      }
+    });
+  }, {threshold: 0.5});
+  revealObserver.observe(aboutSection);
 
-  function updateStudy() {
-    studyBox.style.transform = "rotateY(90deg)";
-    setTimeout(() => {
-      studyBox.innerHTML = `<h2>${studies[currentStudyIndex].title}</h2>
-         <h3>${studies[currentStudyIndex].degree}</h3>
-         <p>${studies[currentStudyIndex].details}</p>`;
-      studyBox.style.transform = "rotateY(0deg)";
-    }, 450);
-  }
-  nextBtn.addEventListener("click", () => {
-    currentStudyIndex = (currentStudyIndex + 1) % studies.length;
-    updateStudy();
-    // Animate button a bit on click
-    nextBtn.style.transform = "rotateY(45deg)";
-    setTimeout(() => {
-      nextBtn.style.transform = "rotateY(0deg)";
-    }, 300);
+  // === Projects Section ===
+  const projects = document.querySelectorAll(".project-card");
+  const projectObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add("open");
+        entry.target.classList.remove("closed");
+      } else {
+        entry.target.classList.remove("open");
+        entry.target.classList.add("closed");
+      }
+    });
+  }, { threshold: 0.35 });
+  projects.forEach(p => {
+    projectObserver.observe(p);
+
+    // Keyboard toggle flip for accessibility
+    p.addEventListener("keydown", (e) => {
+      if(e.key === "Enter" || e.key === " "){
+        e.preventDefault();
+        p.classList.toggle("flipped");
+      }
+    });
   });
-  updateStudy();
 
-  // Reveal sections on scroll with animation classes
-  const rollSections = document.querySelectorAll(".roll-animation");
-  const flipSections = document.querySelectorAll(".flip-animation");
-  const cubeSections = document.querySelectorAll(".cube-animation");
-  const rotateSections = document.querySelectorAll(".rotate-animation");
 
-  function revealSections() {
-    const windowHeight = window.innerHeight;
-    // Roll animation
-    rollSections.forEach((el) => {
-      const top = el.getBoundingClientRect().top;
-      if (top < windowHeight * 0.8) {
-        el.style.animationPlayState = "running";
+  // === Studies Section ===
+  const leftBox = document.querySelector(".study-box.left-box");
+  const rightBox = document.querySelector(".study-box.right-box");
+  const studiesSection = document.getElementById("studies");
+
+  const studiesObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        leftBox.classList.add("visible");
+        rightBox.classList.add("visible");
+      } else {
+        leftBox.classList.remove("visible");
+        rightBox.classList.remove("visible");
       }
     });
-    // Flip animation
-    flipSections.forEach((el) => {
-      const top = el.getBoundingClientRect().top;
-      if (top < windowHeight * 0.8) {
-        el.style.animationPlayState = "running";
+  }, {threshold: 0.5});
+  studiesObserver.observe(studiesSection);
+
+
+  // === Experience Section ===
+  const experiences = document.querySelectorAll(".experience-box");
+  const expObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add("visible");
+      } else {
+        entry.target.classList.remove("visible");
       }
     });
-    // Cube animation
-    cubeSections.forEach((el) => {
-      const top = el.getBoundingClientRect().top;
-      if (top < windowHeight * 0.8) {
-        el.style.animationPlayState = "running";
-      }
+  }, {threshold: 0.5});
+  experiences.forEach(exp => expObserver.observe(exp));
+
+
+  // === Support Section Slide-in from left ===
+  const supportSection = document.getElementById("support");
+  const supportObserver = new IntersectionObserver(entries => {
+    entries.forEach(e=>{
+      if(e.isIntersecting) supportSection.classList.add("visible");
+      else supportSection.classList.remove("visible");
     });
-    // Rotate animation
-    rotateSections.forEach((el) => {
-      const top = el.getBoundingClientRect().top;
-      if (top < windowHeight * 0.85) {
-        el.style.animationPlayState = "running";
-      }
+  }, {threshold: 0.5});
+  supportObserver.observe(supportSection);
+
+
+  // === Contact Section Slide-in from right ===
+  const contactSection = document.getElementById("contact");
+  const contactObserver = new IntersectionObserver(entries => {
+    entries.forEach(e=>{
+      if(e.isIntersecting) contactSection.classList.add("visible");
+      else contactSection.classList.remove("visible");
     });
-  }
-  window.addEventListener("scroll", revealSections);
-  revealSections();
+  }, {threshold: 0.5});
+  contactObserver.observe(contactSection);
+
 });
