@@ -15,25 +15,21 @@ document.addEventListener("DOMContentLoaded", () => {
     aboutImageWrapper.classList.add("clear");
   });
 
-  // About section fade slide up on scroll + image blur toggle
-  const aboutText = aboutSection.querySelector(".about-text");
+  // About section reveal fade slide with image blur toggle
   const aboutObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
+        aboutSection.classList.add('visible');
       } else {
-        entry.target.classList.remove("visible");
-        // Also reset image blur and overlay if scrolled up
+        aboutSection.classList.remove('visible');
         overlay.classList.remove("hidden");
         aboutImageWrapper.classList.remove("clear");
       }
     });
-  }, {
-    threshold: 0.6
-  });
+  }, { threshold: 0.5 });
   aboutObserver.observe(aboutSection);
 
-  // Projects Zoom in/out on scroll, with faster response
+  // Projects Zoom in/out on scroll with flip on click/focus
   const projects = document.querySelectorAll(".project-card");
   const projObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -43,15 +39,28 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         entry.target.classList.remove("open");
         entry.target.classList.add("closed");
+        entry.target.classList.remove("flipped"); // reset flip when scrolled out
       }
     });
-  }, { threshold: 0.45 });
-  projects.forEach(p => projObserver.observe(p));
+  }, { threshold: 0.4 });
+  projects.forEach(p => {
+    projObserver.observe(p);
+    p.addEventListener('click', () => {
+      p.classList.toggle('flipped');
+    });
+    // allow keyboard toggle flip
+    p.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        p.classList.toggle("flipped");
+      }
+    });
+  });
 
-  // Studies sliding left and right with visibility toggle faster
+  // Studies sliding from sides
   const studiesSection = document.getElementById("studies");
-  const leftBox = studiesSection.querySelector(".left-box");
-  const rightBox = studiesSection.querySelector(".right-box");
+  let leftBox = studiesSection.querySelector(".left-box");
+  let rightBox = studiesSection.querySelector(".right-box");
   const studiesObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -62,10 +71,10 @@ document.addEventListener("DOMContentLoaded", () => {
         rightBox.classList.remove("visible");
       }
     });
-  }, { threshold: 0.45 });
+  }, { threshold: 0.4 });
   studiesObserver.observe(studiesSection);
 
-  // Experience circular open close faster
+  // Experience circular zoom + rotation on scroll visible
   const experiences = document.querySelectorAll(".experience-box");
   const expObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -75,27 +84,26 @@ document.addEventListener("DOMContentLoaded", () => {
         entry.target.classList.remove("visible");
       }
     });
-  }, {threshold: 0.45});
+  }, {threshold: 0.4});
   experiences.forEach(exp => expObserver.observe(exp));
 
-  // Support section slide in/out left
+  // Support show/hide sliding left
   const supportSection = document.getElementById("support");
   const supportObserver = new IntersectionObserver(entries => {
     entries.forEach(e=>{
       if(e.isIntersecting) supportSection.classList.add("visible");
       else supportSection.classList.remove("visible");
     });
-  }, {threshold: 0.45});
+  }, {threshold: 0.4});
   supportObserver.observe(supportSection);
 
-  // Contact section slide in/out right
+  // Contact show/hide sliding right
   const contactSection = document.getElementById("contact");
   const contactObserver = new IntersectionObserver(entries => {
     entries.forEach(e=>{
       if(e.isIntersecting) contactSection.classList.add("visible");
       else contactSection.classList.remove("visible");
     });
-  }, {threshold: 0.45});
+  }, {threshold: 0.4});
   contactObserver.observe(contactSection);
-
 });
