@@ -102,11 +102,10 @@ header.sticky-nav nav ul li a:focus {
 
 /* Scroll Down Button - placed immediately visible near bottom center */
 #scroll-down-btn {
-  position: fixed;
-  bottom: 25px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 1.1rem;
+  display: block;
+  margin: 8rem auto 0 auto; /* Top margin from content, auto for horizontal center */
+
+  font-size: 1.5rem;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -119,15 +118,14 @@ header.sticky-nav nav ul li a:focus {
   text-transform: lowercase;
   outline-offset: 3px;
   padding: 6px 0;
-  z-index: 100;
-  max-width: 180px;
-  white-space: nowrap;
 }
+
 #scroll-down-btn:focus {
   outline: 2px solid #52b0ff;
   border-radius: 10px;
   outline-offset: 4px;
 }
+
 @keyframes bounce {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-12px); }
@@ -137,15 +135,14 @@ header.sticky-nav nav ul li a:focus {
 .about-section {
   display: flex;
   max-width: 1100px;
-  margin: 60px auto 60px;
-  gap: 2.8rem;
-  padding: 0 1rem;
+  margin: 0 auto;
+  gap: 3rem;
+  padding: 4rem 1rem;
   align-items: center;
   flex-wrap: wrap;
   opacity: 0;
   transform: translateY(40px);
-  transition: opacity 0.4s ease, transform 0.4s ease;
-  min-height: 360px;
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 .about-section.visible {
   opacity: 1;
@@ -164,8 +161,7 @@ header.sticky-nav nav ul li a:focus {
   cursor: pointer;
   user-select: none;
   filter: blur(8px);
-  transition: filter 0.35s ease;
-  z-index: 2;
+  transition: filter 0.5s ease;
 }
 .about-image-wr.clear {
   filter: none;
@@ -177,7 +173,6 @@ header.sticky-nav nav ul li a:focus {
   border-radius: inherit;
   pointer-events: none;
   user-select: none;
-  display: block;
 }
 .image-overlay {
   position: absolute;
@@ -188,11 +183,10 @@ header.sticky-nav nav ul li a:focus {
   justify-content: center;
   align-items: center;
   color: #88aaffcc;
-  font-size: 1.45rem;
+  font-size: 1.4rem;
   font-weight: 600;
   user-select: none;
   transition: opacity 0.3s ease;
-  z-index: 3;
 }
 .image-overlay.hidden {
   opacity: 0;
@@ -205,14 +199,13 @@ header.sticky-nav nav ul li a:focus {
   color: #b9c3e5cc;
   min-width: 250px;
   user-select: text;
-  z-index: 1;
 }
 .about-text h2.section-title {
-  font-family: 'Tangerine', cursive;
+  font-family: 'Naluka', serif;
   font-weight: 700;
   font-size: 2.9rem;
   margin-bottom: 1.5rem;
-  letter-spacing: 1.8px;
+  letter-spacing: 2px;
   color: #52b0ff;
   user-select: none;
 }
@@ -377,8 +370,40 @@ header.sticky-nav nav ul li a:focus {
   font-size: 1.14rem;
   line-height: 1.5;
   color: #aabbffbb;
-}
+  .study-box.left-box {
+    animation: slideInLeft 0.8s ease-out both;
+    animation-timeline: view();
+    animation-range: entry 10% cover 30%;
+  }
 
+  .study-box.right-box {
+    animation: slideInRight 0.8s ease-out both;
+    animation-timeline: view();
+    animation-range: entry 10% cover 30%;
+  }
+
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-300px) rotate(-6deg);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0) rotate(0deg);
+    }
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(300px) rotate(6deg);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0) rotate(0deg);
+    }
+  }
+}
 /* Experience Section */
 .experience-section {
   max-width: 100%;
