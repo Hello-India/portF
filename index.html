@@ -2,33 +2,38 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
   <title>Binary Quest Portfolio</title>
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Naluka&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Dancing+Script&display=swap" rel="stylesheet" />
 
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
+  <!-- Sticky Nav with Hamburger Menu on Mobile -->
+  <header class="sticky-nav">
+    <nav>
+      <div class="nav-container">
+        <div class="nav-logo">Binary Quest</div>
+        <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">&#9776;</button>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#studies">Studies</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#support">Support</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
   <div class="cursor">
     <div class="outer"></div>
     <div class="inner"></div>
   </div>
-
-  <header class="sticky-nav">
-    <nav>
-      <ul>
-        <li><a href="#about">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#studies">Studies</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#support">Support</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
 
   <!-- Welcome Section -->
   <section id="welcome" class="welcome-section">
@@ -65,41 +70,79 @@
     <h2 class="section-title">Projects</h2>
     <div class="projects-grid">
       <div class="project-card zoom-transition closed" tabindex="0" aria-label="Resume Builder Project">
-        <img src="https://play-lh.googleusercontent.com/JbYSifXLD71pQ8NB7tyaSsReFwfU3mVsqDBdpf__-B10RWdCHB_X2U5nfL4_7j9M0WE=w480-h960-rw?auto=format&fit=crop&w=600&q=80" alt="Resume Builder" />
-        <h3>Resume Builder</h3>
-        <p>Craft professional resumes effortlessly with sleek templates.</p>
+        <div class="flip-container">
+          <div class="flip-front">
+            <img src="https://play-lh.googleusercontent.com/JbYSifXLD71pQ8NB7tyaSsReFwfU3mVsqDBdpf__-B10RWdCHB_X2U5nfL4_7j9M0WE=w480-h960-rw?auto=format&fit=crop&w=600&q=80" alt="Resume Builder" />
+            <h3>Resume Builder</h3>
+            <p>Craft professional resumes effortlessly with sleek templates.</p>
+          </div>
+          <div class="flip-back">
+            <p>A clean and interactive tool to create customizable resumes with drag-and-drop editing and instant downloads.</p>
+          </div>
+        </div>
       </div>
+
       <div class="project-card zoom-transition closed" tabindex="0" aria-label="API Explorer Project">
-        <img src="https://sinay.ai/wp-content/uploads/2022/09/api-e1649279794668-1024x502.webp?auto=format&fit=crop&w=600&q=80" alt="API Explorer" />
-        <h3>API Explorer</h3>
-        <p>Test, authenticate, and learn various public APIs with ease.</p>
+        <div class="flip-container">
+          <div class="flip-front">
+            <img src="https://sinay.ai/wp-content/uploads/2022/09/api-e1649279794668-1024x502.webp?auto=format&fit=crop&w=600&q=80" alt="API Explorer" />
+            <h3>API Explorer</h3>
+            <p>Test, authenticate, and learn various public APIs with ease.</p>
+          </div>
+          <div class="flip-back">
+            <p>Interactive platform to explore live API calls with response visualization, supporting developers to experiment and learn.</p>
+          </div>
+        </div>
       </div>
+
       <div class="project-card zoom-transition closed" tabindex="0" aria-label="CyberShield Project">
-        <img src="https://www.raxatechnosecuritysolutions.in/assets/img/Cyber-Security_Banner.jpg?auto=format&fit=crop&w=600&q=80" alt="CyberShield Dashboard" />
-        <h3>CyberShield</h3>
-        <p>Real-time cybersecurity monitoring with visual alerts and analytics.</p>
+        <div class="flip-container">
+          <div class="flip-front">
+            <img src="https://www.raxatechnosecuritysolutions.in/assets/img/Cyber-Security_Banner.jpg?auto=format&fit=crop&w=600&q=80" alt="CyberShield Dashboard" />
+            <h3>CyberShield</h3>
+            <p>Real-time cybersecurity monitoring with visual alerts and analytics.</p>
+          </div>
+          <div class="flip-back">
+            <p>Enterprise-grade dashboard tracking network threats and activity with customizable profiles and analytics.</p>
+          </div>
+        </div>
       </div>
+
       <div class="project-card zoom-transition closed" tabindex="0" aria-label="Task Tracker Project">
-        <img src="https://spp.co/img/containers/assets/content/track-tasks.jpg/d7041c84bf145d187dd026d635e49a12/track-tasks.webp?auto=format&fit=crop&w=600&q=80" alt="Task Tracker" />
-        <h3>Task Tracker</h3>
-        <p>Manage daily to-dos with tagging, deadlines, and collaboration.</p>
+        <div class="flip-container">
+          <div class="flip-front">
+            <img src="https://spp.co/img/containers/assets/content/track-tasks.jpg/d7041c84bf145d187dd026d635e49a12/track-tasks.webp?auto=format&fit=crop&w=600&q=80" alt="Task Tracker" />
+            <h3>Task Tracker</h3>
+            <p>Manage daily to-dos with tagging, deadlines, and collaboration.</p>
+          </div>
+          <div class="flip-back">
+            <p>Lightweight productivity app with intuitive task management features designed for maximum efficiency.</p>
+          </div>
+        </div>
       </div>
+
       <div class="project-card zoom-transition closed" tabindex="0" aria-label="Crypto Insights Project">
-        <img src="https://www.fidelity.com/bin-public/600_Fidelity_Com_English/images/learning-center/heros/crypto-outlook_600977965_banner.png?auto=format&fit=crop&w=600&q=80" alt="Crypto Insights" />
-        <h3>Crypto Insights</h3>
-        <p>Visualize and analyze cryptocurrency market trends in real-time.</p>
+        <div class="flip-container">
+          <div class="flip-front">
+            <img src="https://www.fidelity.com/bin-public/600_Fidelity_Com_English/images/learning-center/heros/crypto-outlook_600977965_banner.png?auto=format&fit=crop&w=600&q=80" alt="Crypto Insights" />
+            <h3>Crypto Insights</h3>
+            <p>Visualize and analyze cryptocurrency market trends in real-time.</p>
+          </div>
+          <div class="flip-back">
+            <p>Real-time crypto analytics dashboard with charts, historical data, and predictive insights for traders.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- Studies Section -->
   <section id="studies" class="page-section studies-section">
-
     <div class="studies-container">
       <div class="study-box left-box">
         <h2>XYZ UNIVERSITY</h2>
         <h3>Hoping for B.Tech in Computer Science & Engineering</h3>
-        <p> wanna Graduate with perfect 10 CGPA - a hallmark of dedication and excellence.</p>
+        <p>Wanna graduate with perfect 10 CGPA - a hallmark of dedication and excellence.</p>
       </div>
       <div class="study-box right-box">
         <h2>KENDRIYA VIDYALAYA</h2>
@@ -121,7 +164,7 @@
 
       <div class="experience-box circular-scroll closed" tabindex="0" aria-label="Bot Coding Experience">
         <img src="https://res.cloudinary.com/upwork-cloud/image/upload/c_scale,w_1000/v1708060989/catalog/1535344606243815424/tgdcouungqnmx9krpfsg.webp?auto=format&fit=crop&w=600&q=80" alt="Bot coding" />
-        <h3>magnificent Bot Coding & Hosting</h3>
+        <h3>Magnificent Bot Coding & Hosting</h3>
         <p>Coding and hosting innovative bots for 5+ years, specializing in automation and intelligent integrations.</p>
       </div>
     </div>
@@ -145,10 +188,10 @@
   <section id="contact" class="page-section contact-section">
     <h2 class="section-title">Contact Me</h2>
     <ul class="contact-list">
-      <li><strong>GitHub:</strong><a href="https://github.com/Binary-Quest">Binary Quest</a></li>
-      <li><strong>Telegram:</strong><a href="https://t.me/BinaryQuest">Visit Us</a></li>
-      <li><strong>Instagram:</strong><a href="https://www.instagram.com/deaduserxyz">Click me</a></li>
-      <li><strong>Email:</strong>Soon</li>
+      <li><strong>GitHub:</strong> <a href="https://github.com/Binary-Quest" target="_blank" rel="noopener noreferrer">Binary Quest</a></li>
+      <li><strong>Telegram:</strong> <a href="https://t.me/BinaryQuest" target="_blank" rel="noopener noreferrer">Visit Us</a></li>
+      <li><strong>Instagram:</strong> <a href="https://www.instagram.com/deaduserxyz" target="_blank" rel="noopener noreferrer">Click me</a></li>
+      <li><strong>Email:</strong> Soon</li>
     </ul>
   </section>
 
