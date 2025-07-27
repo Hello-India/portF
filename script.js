@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
     aboutImageWrapper.classList.add("clear");
   });
 
-  // About section fade slide up on scroll
+  // About section fade slide up on scroll + image blur toggle
   const aboutText = aboutSection.querySelector(".about-text");
   const aboutObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -29,11 +29,11 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }, {
-    threshold: 0.5
+    threshold: 0.6
   });
   aboutObserver.observe(aboutSection);
 
-  // Projects Zoom in/out on scroll faster
+  // Projects Zoom in/out on scroll, with faster response
   const projects = document.querySelectorAll(".project-card");
   const projObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
@@ -45,7 +45,7 @@ document.addEventListener("DOMContentLoaded", () => {
         entry.target.classList.add("closed");
       }
     });
-  }, { threshold: 0.4 });
+  }, { threshold: 0.45 });
   projects.forEach(p => projObserver.observe(p));
 
   // Studies sliding left and right with visibility toggle faster
@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
         rightBox.classList.remove("visible");
       }
     });
-  }, { threshold: 0.3 });
+  }, { threshold: 0.45 });
   studiesObserver.observe(studiesSection);
 
   // Experience circular open close faster
@@ -75,27 +75,27 @@ document.addEventListener("DOMContentLoaded", () => {
         entry.target.classList.remove("visible");
       }
     });
-  }, {threshold: 0.3});
+  }, {threshold: 0.45});
   experiences.forEach(exp => expObserver.observe(exp));
 
-  // Support section slide in/out left faster
+  // Support section slide in/out left
   const supportSection = document.getElementById("support");
   const supportObserver = new IntersectionObserver(entries => {
     entries.forEach(e=>{
       if(e.isIntersecting) supportSection.classList.add("visible");
       else supportSection.classList.remove("visible");
     });
-  }, {threshold: 0.3});
+  }, {threshold: 0.45});
   supportObserver.observe(supportSection);
 
-  // Contact section slide in/out right faster
+  // Contact section slide in/out right
   const contactSection = document.getElementById("contact");
   const contactObserver = new IntersectionObserver(entries => {
     entries.forEach(e=>{
       if(e.isIntersecting) contactSection.classList.add("visible");
       else contactSection.classList.remove("visible");
     });
-  }, {threshold: 0.3});
+  }, {threshold: 0.45});
   contactObserver.observe(contactSection);
 
 });
