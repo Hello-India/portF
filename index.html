@@ -14,26 +14,25 @@
 
   <!-- Sticky Nav with Hamburger Menu on Mobile -->
   <header class="sticky-nav">
-    <nav>
-      <div class="nav-container">
-        
-        <ul class="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#studies">Studies</a></li>
-          <li><a href="#experience">Experience</a></li>
-          <li><a href="#support">Support</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
+    <div class="nav-container">
+      <div class="logo-container">
+        <img src="https://sahildrive.fakefacebook602gmailcom.workers.dev/0:/Welcome%20To%20BinaryQuest/IMG_20241220_022556_811.jpg" alt="Binary Quest Logo" />
       </div>
-    </nav>
+      <button id="menu-toggle" aria-label="Toggle menu ≡" aria-expanded="false">≡</button>
+    </div>
   </header>
 
-  <div class="cursor">
-    <div class="outer"></div>
-    <div class="inner"></div>
-  </div>
-
+  <!-- Full screen overlay menu -->
+  <nav id="overlay-menu" class="overlay-menu hidden" aria-hidden="true" role="menu">
+    <ul>
+      <li><a href="#about" role="menuitem">About</a></li>
+      <li><a href="#projects" role="menuitem">Projects</a></li>
+      <li><a href="#studies" role="menuitem">Studies</a></li>
+      <li><a href="#experience" role="menuitem">Experience</a></li>
+      <li><a href="#support" role="menuitem">Support</a></li>
+      <li><a href="#contact" role="menuitem">Contact</a></li>
+    </ul>
+  </nav>
   <!-- Welcome Section -->
   <section id="welcome" class="welcome-section">
     <div class="greeting-card">
@@ -136,7 +135,9 @@
   </section>
 
   <!-- Studies Section -->
+  
   <section id="studies" class="page-section studies-section">
+    <h4 class="section-title">Education</h4>
     <div class="studies-container">
       <div class="study-box left-box">
         <h2>XYZ UNIVERSITY</h2>
@@ -154,18 +155,17 @@
   <!-- Experience Section -->
   <section id="experience" class="page-section experience-section">
     <h2 class="section-title">Experience</h2>
-    <div class="experience-scroll-container">
-      <div class="experience-box circular-scroll closed" tabindex="0" aria-label="Freelance Web Development Experience">
-        <img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20221222184908/web-development1.png?auto=format&fit=crop&w=600&q=80" alt="Web development" />
-        <h3>10+ Web Development Projects</h3>
-        <p>Certified experience freelancing building sleek and responsive websites for clients worldwide.</p>
-      </div>
-
+    <div class="horizontal-container">
       <div class="experience-box circular-scroll closed" tabindex="0" aria-label="Bot Coding Experience">
         <img src="https://res.cloudinary.com/upwork-cloud/image/upload/c_scale,w_1000/v1708060989/catalog/1535344606243815424/tgdcouungqnmx9krpfsg.webp?auto=format&fit=crop&w=600&q=80" alt="Bot coding" />
         <h3>Magnificent Bot Coding & Hosting</h3>
         <p>Coding and hosting innovative bots for 5+ years, specializing in automation and intelligent integrations.</p>
       </div>
+     <div class="experience-box circular-scroll closed" tabindex="0" aria-label="Bot Coding Experience">
+       <img src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20221222184908/web-development1.png?auto=format&fit=crop&w=600&q=80" alt="Web development" />
+       <h3>10+ Web Development Projects</h3>
+       <p>Certified experience freelancing building sleek and responsive websites for clients worldwide.</p>
+     </div>
     </div>
   </section>
 
