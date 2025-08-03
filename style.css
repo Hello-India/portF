@@ -161,30 +161,38 @@ header.sticky-nav .nav-container {
   overflow: visible;
 }
 
-/* Premium floating particles background */
-.welcome-section::before {
+/* Premium Snow Effect for entire website */
+body::before {
   content: '';
-  position: absolute;
-  top: 0;
+  position: fixed;
+  top: -100vh;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 200vh;
   background-image: 
-    radial-gradient(2px 2px at 20px 30px, #52b0ff88, transparent),
-    radial-gradient(2px 2px at 40px 70px, #52b0ff44, transparent),
+    radial-gradient(2px 2px at 20px 30px, #52b0ff99, transparent),
+    radial-gradient(3px 3px at 40px 70px, #ffffff77, transparent),
     radial-gradient(1px 1px at 90px 40px, #52b0ff66, transparent),
-    radial-gradient(1px 1px at 130px 80px, #52b0ff33, transparent),
-    radial-gradient(2px 2px at 160px 30px, #52b0ff55, transparent);
+    radial-gradient(2px 2px at 130px 80px, #ffffff55, transparent),
+    radial-gradient(1px 1px at 160px 30px, #52b0ff88, transparent),
+    radial-gradient(2px 2px at 220px 60px, #ffffff44, transparent),
+    radial-gradient(1px 1px at 300px 20px, #52b0ff77, transparent),
+    radial-gradient(3px 3px at 350px 90px, #ffffff66, transparent);
   background-repeat: repeat;
-  background-size: 200px 100px;
-  animation: floatingParticles 20s linear infinite;
-  opacity: 0.6;
+  background-size: 400px 400px;
+  animation: snowfall 25s linear infinite;
+  opacity: 0.7;
   pointer-events: none;
+  z-index: 1;
 }
 
-@keyframes floatingParticles {
-  0% { transform: translateY(0px) rotate(0deg); }
-  100% { transform: translateY(-100px) rotate(360deg); }
+@keyframes snowfall {
+  0% { 
+    transform: translateY(-100vh) translateX(0px);
+  }
+  100% { 
+    transform: translateY(100vh) translateX(100px);
+  }
 }
 
 .greeting-card {
@@ -371,7 +379,7 @@ header.sticky-nav .nav-container {
 
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px,1fr));
   gap: 2.6rem;
 }
 .project-card {
@@ -391,7 +399,8 @@ header.sticky-nav .nav-container {
   box-sizing: border-box;
   perspective: 1000px;
   position: relative;
-  height: 350px;
+  height: 380px;
+  min-height: 380px;
 }
 
 .project-card:hover {
@@ -501,13 +510,12 @@ header.sticky-nav .nav-container {
 
 .study-box {
   background: #17203e;
-  padding: 2.8rem 3rem;
   border-radius: 30px;
   box-shadow: 0 20px 45px rgba(82, 176, 255, 0.4);
   width: 48%;
   min-width: 320px;
   color: #c3cdfddd;
-  cursor: default;
+  cursor: pointer;
   user-select: text;
   opacity: 0;
   transform: translateX(0);
@@ -515,42 +523,73 @@ header.sticky-nav .nav-container {
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
+  height: 250px;
 }
 
-.study-box::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
+.study-preview {
+  padding: 2rem;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-  transition: left 0.5s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.study-preview img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 1rem;
+  border: 3px solid #52b0ff;
+  box-shadow: 0 0 20px rgba(82, 176, 255, 0.5);
+}
+
+.study-details {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(135deg, #1a2449, #0f1428);
+  padding: 2rem;
+  border-radius: 30px;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.study-stats {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  flex-wrap: wrap;
+}
+
+.study-stats span {
+  background: rgba(82, 176, 255, 0.2);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  border: 1px solid rgba(82, 176, 255, 0.3);
+}
+
+.study-box:hover .study-preview {
+  transform: translateY(-100%);
+}
+
+.study-box:hover .study-details {
+  transform: translateY(-100%);
 }
 
 .study-box:hover {
-  transform: perspective(1000px) rotateX(-2deg) rotateY(5deg) translateY(-10px);
   box-shadow: 0 30px 60px rgba(82, 176, 255, 0.6);
   background: #1a2449;
 }
-
-.study-box:hover::before {
-  left: 100%;
-}
-
-.study-box.right-box:hover {
-  transform: perspective(1000px) rotateX(-2deg) rotateY(-5deg) translateY(-10px);
-}
-.study-box.left-box {
-  transform: translateX(-350px);
-}
-.study-box.right-box {
-  transform: translateX(350px);
-}
-.study-box.visible {
-  opacity: 1;
-  transform: translateX(0);
-}
+/* Removed old transform styles as they're now handled by CSS animations */
 .study-box h2 {
   font-family: 'Bricolage Grotesque', sans-serif;
   font-size: 2.3rem;
@@ -573,44 +612,44 @@ header.sticky-nav .nav-container {
 }
 
 .study-box.left-box {
-  animation: popUpLeft 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
+  animation: slideInFromLeft 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
   animation-timeline: view();
   animation-range: entry 10% cover 30%;
 }
 
 .study-box.right-box {
-  animation: popUpRight 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
+  animation: slideInFromRight 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
   animation-timeline: view();
   animation-range: entry 10% cover 30%;
 }
 
-@keyframes popUpLeft {
+@keyframes slideInFromLeft {
   0% {
     opacity: 0;
-    transform: translateX(-100px) translateY(50px) scale(0.6) rotate(-10deg);
+    transform: translateX(-400px) scale(0.8) rotate(-5deg);
   }
   50% {
     opacity: 0.7;
-    transform: translateX(-20px) translateY(-10px) scale(1.1) rotate(-2deg);
+    transform: translateX(-50px) scale(1.05) rotate(1deg);
   }
   100% {
     opacity: 1;
-    transform: translateX(0) translateY(0) scale(1) rotate(0deg);
+    transform: translateX(0) scale(1) rotate(0deg);
   }
 }
 
-@keyframes popUpRight {
+@keyframes slideInFromRight {
   0% {
     opacity: 0;
-    transform: translateX(100px) translateY(50px) scale(0.6) rotate(10deg);
+    transform: translateX(400px) scale(0.8) rotate(5deg);
   }
   50% {
     opacity: 0.7;
-    transform: translateX(20px) translateY(-10px) scale(1.1) rotate(2deg);
+    transform: translateX(50px) scale(1.05) rotate(-1deg);
   }
   100% {
     opacity: 1;
-    transform: translateX(0) translateY(0) scale(1) rotate(0deg);
+    transform: translateX(0) scale(1) rotate(0deg);
   }
 }
 /* Experience Section */
@@ -897,32 +936,50 @@ footer {
   letter-spacing: 0.5px;
 }
 
-/* Cursor Styling */
-.cursor {
-  width: 28px;
-  height: 28px;
-  border: 2px solid #52b0ff;
-  border-radius: 50%;
+/* Premium Dragon Cursor */
+.dragon-cursor {
   position: fixed;
-  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
   pointer-events: none;
-  transition: background-color 0.15s ease, transform 0.15s ease;
-  transform-origin: 50% 50%;
   z-index: 999999;
-  mix-blend-mode: difference;
-  background-color: transparent;
-  will-change: transform, background-color;
-  display: none; /* hide on mobile to avoid lag */
+  transition: opacity 0.3s ease, transform 0.1s ease;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+  opacity: 0;
 }
+
+.dragon-cursor.visible {
+  opacity: 1;
+}
+
+.dragon-cursor.hiding {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.5);
+}
+
 @media (hover: hover) and (pointer: fine) {
-  .cursor {
+  .dragon-cursor {
     display: block;
   }
 }
-.cursor.pointer {
-  transform: scale(1.8);
-  background-color: #52b0ff;
-  border: none;
+
+@media (max-width: 768px) {
+  .dragon-cursor {
+    display: none;
+  }
+}
+
+/* Hide default cursor */
+body {
+  cursor: none;
+}
+
+/* Show cursor on mobile */
+@media (max-width: 768px) {
+  body {
+    cursor: auto;
+  }
 }
 
 .outer {
@@ -987,7 +1044,24 @@ footer {
   }
   .study-box {
     width: 90% !important;
-    transform: none !important;
+    height: auto !important;
+    min-height: 250px;
+  }
+  
+  .study-box.left-box,
+  .study-box.right-box {
+    animation: mobileStudyFadeIn 0.6s ease-out both !important;
+  }
+  
+  @keyframes mobileStudyFadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
   }
   .experience-scroll-container {
     gap: 1.5rem;

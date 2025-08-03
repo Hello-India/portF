@@ -1,29 +1,79 @@
-const cursor = document.querySelector('.cursor');
-const outer = document.querySelector('.outer');
-const inner = document.querySelector('.inner');
+// Premium Dragon Cursor Logic
+let dragonCursor;
+let lastMoveTime = Date.now();
+let hideTimeout;
+let isVisible = false;
 
-document.addEventListener('mousemove', (e) => {
-  const x = e.clientX, y = e.clientY;
-  cursor.style.top = y + "px";
-  cursor.style.left = x + "px";
-  outer.style.top = y + "px";
-  outer.style.left = x + "px";
-  inner.style.top = y + "px";
-  inner.style.left = x + "px";
+document.addEventListener('DOMContentLoaded', () => {
+  dragonCursor = document.getElementById('dragonCursor');
+  
+  // Only initialize on desktop
+  if (window.innerWidth > 768) {
+    initDragonCursor();
+  }
 });
 
-document.addEventListener('mousedown', () => {
-  cursor.classList.add("pointer");
-});
+function initDragonCursor() {
+  document.addEventListener('mousemove', handleMouseMove);
+  document.addEventListener('mouseenter', showDragon);
+  document.addEventListener('mouseleave', hideDragon);
+}
 
-document.addEventListener('mouseup', () => {
-  cursor.classList.remove("pointer");
-});
+function handleMouseMove(e) {
+  if (!dragonCursor) return;
+  
+  lastMoveTime = Date.now();
+  
+  // Update dragon position
+  dragonCursor.style.left = e.clientX + 'px';
+  dragonCursor.style.top = e.clientY + 'px';
+  
+  // Show dragon if hidden
+  if (!isVisible) {
+    showDragon();
+  }
+  
+  // Clear existing timeout
+  clearTimeout(hideTimeout);
+  
+  // Set new timeout to hide dragon after 4 seconds of inactivity
+  hideTimeout = setTimeout(() => {
+    if (Date.now() - lastMoveTime >= 4000) {
+      hideDragon();
+    }
+  }, 4000);
+}
 
-document.addEventListener('mouseleave', () => {
-  cursor.style.display = 'none';
-});
+function showDragon() {
+  if (!dragonCursor) return;
+  
+  isVisible = true;
+  dragonCursor.classList.add('visible');
+  dragonCursor.classList.remove('hiding');
+}
 
-document.addEventListener('mouseenter', () => {
-  cursor.style.display = 'block';
+function hideDragon() {
+  if (!dragonCursor) return;
+  
+  isVisible = false;
+  dragonCursor.classList.add('hiding');
+  dragonCursor.classList.remove('visible');
+  
+  // Completely hide after animation
+  setTimeout(() => {
+    if (!isVisible) {
+      dragonCursor.style.opacity = '0';
+    }
+  }, 300);
+}
+
+// Handle window resize
+window.addEventListener('resize', () => {
+  if (window.innerWidth <= 768) {
+    if (dragonCursor) {
+      hideDragon();
+    }
+  } else if (window.innerWidth > 768 && !isVisible) {
+    initDragonCursor();
+  }
 });

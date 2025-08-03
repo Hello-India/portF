@@ -49,6 +49,14 @@ document.addEventListener("DOMContentLoaded", () => {
     image.classList.add("clear");          // Unblur image
   });
 
+  // Reset image blur when clicking outside or scrolling away
+  document.addEventListener("click", (e) => {
+    if (!aboutImageWrapper.contains(e.target)) {
+      overlay.classList.remove("hidden");
+      image.classList.remove("clear");
+    }
+  });
+
 
   // About section fade slide up on scroll
   const aboutText = aboutSection.querySelector(".about-text");
@@ -60,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
         entry.target.classList.remove("visible");
         // Also reset image blur and overlay if scrolled up
         overlay.classList.remove("hidden");
-        aboutImageWrapper.classList.remove("clear");
+        image.classList.remove("clear");
       }
     });
   }, {

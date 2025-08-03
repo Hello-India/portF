@@ -140,14 +140,32 @@
     <h4 class="section-title">Education</h4>
     <div class="studies-container">
       <div class="study-box left-box">
-        <h2>XYZ UNIVERSITY</h2>
-        <h3>Hoping for B.Tech in Computer Science & Engineering</h3>
-        <p>Wanna graduate with perfect 10 CGPA - a hallmark of dedication and excellence.</p>
+        <div class="study-preview">
+          <img src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=600&q=80" alt="University" />
+          <h2>XYZ UNIVERSITY</h2>
+        </div>
+        <div class="study-details">
+          <h3>Hoping for B.Tech in Computer Science & Engineering</h3>
+          <p>Wanna graduate with perfect 10 CGPA - a hallmark of dedication and excellence.</p>
+          <div class="study-stats">
+            <span>Expected: 2028</span>
+            <span>CGPA: 10.0 Target</span>
+          </div>
+        </div>
       </div>
       <div class="study-box right-box">
-        <h2>KENDRIYA VIDYALAYA</h2>
-        <h3>High School - PCM</h3>
-        <p>Completed rigorous academics in Physics, Chemistry, and Mathematics with flying colors.</p>
+        <div class="study-preview">
+          <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=600&q=80" alt="School" />
+          <h2>KENDRIYA VIDYALAYA</h2>
+        </div>
+        <div class="study-details">
+          <h3>High School - PCM</h3>
+          <p>Completed rigorous academics in Physics, Chemistry, and Mathematics with flying colors.</p>
+          <div class="study-stats">
+            <span>Completed: 2024</span>
+            <span>Stream: Science</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -197,6 +215,28 @@
   <footer>
     <p>&copy; 2024 Binary Quest</p>
   </footer>
+
+  <!-- Dragon Cursor -->
+  <div class="dragon-cursor" id="dragonCursor">
+    <svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+      <!-- Dragon Body -->
+      <ellipse cx="30" cy="35" rx="8" ry="12" fill="#52b0ff" opacity="0.8"/>
+      <!-- Dragon Head -->
+      <circle cx="30" cy="20" r="10" fill="#52b0ff"/>
+      <!-- Dragon Eyes -->
+      <circle cx="27" cy="17" r="2" fill="#ffffff"/>
+      <circle cx="33" cy="17" r="2" fill="#ffffff"/>
+      <circle cx="27" cy="17" r="1" fill="#000000"/>
+      <circle cx="33" cy="17" r="1" fill="#000000"/>
+      <!-- Dragon Wings -->
+      <path d="M20 25 Q15 20 18 30 Q20 35 25 30" fill="#52b0ff" opacity="0.6"/>
+      <path d="M40 25 Q45 20 42 30 Q40 35 35 30" fill="#52b0ff" opacity="0.6"/>
+      <!-- Dragon Tail -->
+      <path d="M30 47 Q35 50 32 55 Q28 52 30 47" fill="#52b0ff" opacity="0.7"/>
+      <!-- Glow Effect -->
+      <circle cx="30" cy="20" r="12" fill="none" stroke="#52b0ff" stroke-width="1" opacity="0.3"/>
+    </svg>
+  </div>
 
   <script src="dragon.js"></script>
   <script src="script.js"></script>
