@@ -59,7 +59,7 @@ body, html {
 
 .overlay-menu ul li a {
   display: block;
-  font-family: 'Tangerine', cursive;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-size: 3.4rem;
   color: #52b0ff;
   text-decoration: none;
@@ -119,16 +119,16 @@ header.sticky-nav .nav-container {
   100% { opacity: 1; transform: scale(1);}
 }
 
-/* Responsive: hide old nav on mobile, show on desktop */
+/* Keep menu button visible on all screen sizes since we're using overlay menu */
 @media (min-width: 990px) {
   #main-nav {
-    display: block !important;
+    display: none !important;
   }
   #menu-toggle {
-    display: none;
+    display: block;
   }
   .overlay-menu {
-    display: none !important;
+    display: flex !important;
   }
 }
 
@@ -168,6 +168,7 @@ header.sticky-nav .nav-container {
 }
 .greeting-card h1 {
   margin: 0 0 15px 0;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-weight: 700;
   font-size: 3.2rem;
   color: #52b0ff;
@@ -288,7 +289,7 @@ header.sticky-nav .nav-container {
   user-select: text;
 }
 .about-text h2.section-title {
-  font-family: 'Naluka', serif;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-weight: 700;
   font-size: 2.9rem;
   margin-bottom: 1.5rem;
@@ -304,7 +305,7 @@ header.sticky-nav .nav-container {
   padding: 0 1rem;
 }
 .projects-section .section-title {
-  font-family: 'Tangerine', cursive;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-weight: 700;
   font-size: 3.7rem;
   margin-bottom: 2.5rem;
@@ -349,7 +350,7 @@ header.sticky-nav .nav-container {
   margin-bottom: 1.1rem;
 }
 .project-card h3 {
-  font-family: 'Tangerine', cursive;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-weight: 700;
   font-size: 1.7rem;
   color: #52b0ff;
@@ -418,7 +419,7 @@ header.sticky-nav .nav-container {
   overflow: visible;
 }
 .studies-section .section-title {
-  font-family: 'Tangerine', cursive;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-weight: 700;
   font-size: 3.2rem;
   margin-bottom: 2.5rem;
@@ -453,7 +454,7 @@ header.sticky-nav .nav-container {
   transform: translateX(0);
 }
 .study-box h2 {
-  font-family: 'Tangerine', cursive;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-size: 2.3rem;
   color: #52b0ff;
   margin-bottom: 0.8rem;
@@ -474,36 +475,44 @@ header.sticky-nav .nav-container {
 }
 
 .study-box.left-box {
-  animation: slideInLeft 0.8s ease-out both;
+  animation: popUpLeft 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
   animation-timeline: view();
   animation-range: entry 10% cover 30%;
 }
 
 .study-box.right-box {
-  animation: slideInRight 0.8s ease-out both;
+  animation: popUpRight 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
   animation-timeline: view();
   animation-range: entry 10% cover 30%;
 }
 
-@keyframes slideInLeft {
-  from {
+@keyframes popUpLeft {
+  0% {
     opacity: 0;
-    transform: translateX(-300px) rotate(-6deg);
+    transform: translateX(-100px) translateY(50px) scale(0.6) rotate(-10deg);
   }
-  to {
+  50% {
+    opacity: 0.7;
+    transform: translateX(-20px) translateY(-10px) scale(1.1) rotate(-2deg);
+  }
+  100% {
     opacity: 1;
-    transform: translateX(0) rotate(0deg);
+    transform: translateX(0) translateY(0) scale(1) rotate(0deg);
   }
 }
 
-@keyframes slideInRight {
-  from {
+@keyframes popUpRight {
+  0% {
     opacity: 0;
-    transform: translateX(300px) rotate(6deg);
+    transform: translateX(100px) translateY(50px) scale(0.6) rotate(10deg);
   }
-  to {
+  50% {
+    opacity: 0.7;
+    transform: translateX(20px) translateY(-10px) scale(1.1) rotate(2deg);
+  }
+  100% {
     opacity: 1;
-    transform: translateX(0) rotate(0deg);
+    transform: translateX(0) translateY(0) scale(1) rotate(0deg);
   }
 }
 /* Experience Section */
@@ -515,7 +524,7 @@ header.sticky-nav .nav-container {
   user-select: none;
 }
 .experience-section .section-title {
-  font-family: 'Tangerine', cursive;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-weight: 700;
   font-size: 3.2rem;
   margin-bottom: 2.5rem;
@@ -574,7 +583,7 @@ header.sticky-nav .nav-container {
 }
 .experience-box h3 {
   color: #52b0ff;
-  font-family: 'Tangerine', cursive;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-weight: 700;
   font-size: 1.8rem;
   margin: 0.5rem 0 1rem 0;
@@ -627,7 +636,7 @@ header.sticky-nav .nav-container {
   opacity: 1;
 }
 .support-section h2.section-title {
-  font-family: 'Tangerine', cursive;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-weight: 700;
   font-size: 2.9rem;
   margin-bottom: 2rem;
@@ -712,7 +721,7 @@ header.sticky-nav .nav-container {
   opacity: 1;
 }
 .contact-section h2.section-title {
-  font-family: 'Tangerine', cursive;
+  font-family: 'Bricolage Grotesque', sans-serif;
   font-weight: 700;
   font-size: 2.9rem;
   margin-bottom: 2rem;
