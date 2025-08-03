@@ -408,6 +408,10 @@ header.sticky-nav .nav-container {
   max-width: 1030px;
   margin: 60px auto 60px;
   padding: 0 1rem;
+  text-align: center;
+}
+
+.studies-container {
   display: flex;
   justify-content: center;
   gap: 2.8rem;
@@ -467,39 +471,39 @@ header.sticky-nav .nav-container {
   font-size: 1.14rem;
   line-height: 1.5;
   color: #aabbffbb;
-  .study-box.left-box {
-    animation: slideInLeft 0.8s ease-out both;
-    animation-timeline: view();
-    animation-range: entry 10% cover 30%;
-  }
+}
 
-  .study-box.right-box {
-    animation: slideInRight 0.8s ease-out both;
-    animation-timeline: view();
-    animation-range: entry 10% cover 30%;
-  }
-  
+.study-box.left-box {
+  animation: slideInLeft 0.8s ease-out both;
+  animation-timeline: view();
+  animation-range: entry 10% cover 30%;
+}
 
-  @keyframes slideInLeft {
-    from {
-      opacity: 0;
-      transform: translateX(-300px) rotate(-6deg);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0) rotate(0deg);
-    }
-  }
+.study-box.right-box {
+  animation: slideInRight 0.8s ease-out both;
+  animation-timeline: view();
+  animation-range: entry 10% cover 30%;
+}
 
-  @keyframes slideInRight {
-    from {
-      opacity: 0;
-      transform: translateX(300px) rotate(6deg);
-    }
-    to {
-      opacity: 1;
-      transform: translateX(0) rotate(0deg);
-    }
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-300px) rotate(-6deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) rotate(0deg);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(300px) rotate(6deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) rotate(0deg);
   }
 }
 /* Experience Section */
@@ -831,7 +835,7 @@ footer {
   .about-text {
     width: 100%;
   }
-  .studies-section {
+  .studies-container {
     flex-direction: column;
     gap: 3rem;
   }

@@ -4,9 +4,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const overlayMenu = document.getElementById('overlay-menu');
 
   menuToggle.addEventListener('click', () => {
-    const isHidden = overlayMenu.classList.toggle('visible');
-    overlayMenu.classList.toggle('hidden', !isHidden);
-    menuToggle.setAttribute('aria-expanded', isHidden);
+    const isVisible = overlayMenu.classList.toggle('visible');
+    overlayMenu.classList.toggle('hidden', !isVisible);
+    menuToggle.setAttribute('aria-expanded', isVisible);
   });
 
   // Close menu when clicking any menu link (optional for better UX)
