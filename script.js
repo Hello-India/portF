@@ -1,4 +1,18 @@
+// Reset scroll position on page load/refresh
+window.addEventListener('beforeunload', () => {
+  window.scrollTo(0, 0);
+});
+
+// Additional scroll reset for better compatibility
+if (history.scrollRestoration) {
+  history.scrollRestoration = 'manual';
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+  // Force scroll to top on page load
+  setTimeout(() => {
+    window.scrollTo(0, 0);
+  }, 100);
  // Hamburger menu toggle
   const menuToggle = document.getElementById('menu-toggle');
   const overlayMenu = document.getElementById('overlay-menu');

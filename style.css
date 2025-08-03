@@ -12,6 +12,20 @@ body, html {
   overflow-x: hidden;
 }
 
+/* Premium glass morphism effects */
+.glass-effect {
+  background: rgba(23, 32, 62, 0.25);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Premium glow effects */
+.glow-on-hover:hover {
+  box-shadow: 0 0 30px rgba(82, 176, 255, 0.6);
+  transform: translateY(-2px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 /* Sticky Nav */
 /* Hide old nav menu UI on mobile */
 #main-nav { 
@@ -147,9 +161,37 @@ header.sticky-nav .nav-container {
   overflow: visible;
 }
 
+/* Premium floating particles background */
+.welcome-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(2px 2px at 20px 30px, #52b0ff88, transparent),
+    radial-gradient(2px 2px at 40px 70px, #52b0ff44, transparent),
+    radial-gradient(1px 1px at 90px 40px, #52b0ff66, transparent),
+    radial-gradient(1px 1px at 130px 80px, #52b0ff33, transparent),
+    radial-gradient(2px 2px at 160px 30px, #52b0ff55, transparent);
+  background-repeat: repeat;
+  background-size: 200px 100px;
+  animation: floatingParticles 20s linear infinite;
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+@keyframes floatingParticles {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(-100px) rotate(360deg); }
+}
+
 .greeting-card {
   background: rgba(28, 35, 51, 0.85);
+  backdrop-filter: blur(15px);
   border-radius: 30px;
+  border: 1px solid rgba(82, 176, 255, 0.2);
   box-shadow:
       0 0 60px -6px #52b0ffcc,
       inset 0 0 50px #3f8bff88;
@@ -165,6 +207,14 @@ header.sticky-nav .nav-container {
   font-size: 1.9rem;
   letter-spacing: 1px;
   line-height: 1.1;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.greeting-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow:
+      0 0 80px -6px #52b0ffdd,
+      inset 0 0 60px #3f8bff99;
 }
 .greeting-card h1 {
   margin: 0 0 15px 0;
@@ -244,7 +294,12 @@ header.sticky-nav .nav-container {
     0 0 30px 2px #52b0ffcc;
   cursor: pointer;
   user-select: none;
-  transition: filter 0.5s ease;
+  transition: filter 0.5s ease, transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s ease;
+}
+
+.about-image-wr:hover {
+  transform: scale(1.05) rotate(2deg);
+  box-shadow: 0 0 50px 5px #52b0ffdd;
 }
 .about-image-wr img {
   width: 100%;
@@ -326,17 +381,22 @@ header.sticky-nav .nav-container {
   color: #ccd4ffcc;
   font-weight: 300;
   cursor: pointer;
-  padding: 14px 18px 24px 18px;
   text-align: center;
   user-select: none;
   opacity: 0;
   transform: scale(0.75);
   transform-origin: center center;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   overflow: hidden;
   box-sizing: border-box;
   perspective: 1000px;
   position: relative;
+  height: 350px;
+}
+
+.project-card:hover {
+  box-shadow: 0 20px 50px rgba(82, 176, 255, 0.4);
+  transform: scale(1) translateY(-5px);
 }
 .project-card.open {
   opacity: 1;
@@ -365,43 +425,54 @@ header.sticky-nav .nav-container {
   user-select: none;
 }
 
-/* Flip card inner for project details on hover/focus */
-.project-flip-inner {
-  transition: transform 0.6s ease;
-  transform-style: preserve-3d;
+/* Flip card implementation */
+.flip-container {
+  width: 100%;
+  height: 100%;
   position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.project-card.flipped .project-flip-inner {
+
+.project-card:hover .flip-container {
   transform: rotateY(180deg);
 }
-.project-front, .project-back {
-  backface-visibility: hidden;
+
+.flip-front, .flip-back {
   position: absolute;
   width: 100%;
   height: 100%;
+  backface-visibility: hidden;
   border-radius: 20px;
-  top: 0; left: 0;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding: 14px 18px 24px 18px;
+  padding: 20px;
   box-sizing: border-box;
-  background: #17203e;
-  transition: background 0.3s ease;
 }
-.project-back {
-  background: #121731;
+
+.flip-front {
+  background: #17203e;
+  z-index: 2;
+}
+
+.flip-back {
+  background: linear-gradient(135deg, #1a2449, #0f1428);
   color: #a8baffcc;
   transform: rotateY(180deg);
-  font-weight: 400;
   justify-content: center;
-  font-size: 1rem;
   text-align: center;
-  padding-top: 55px;
+  padding: 40px 20px;
+  border: 1px solid rgba(82, 176, 255, 0.2);
 }
-.project-back p {
-  margin: 0 10px;
+
+.flip-back p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #b8c6ffdd;
+  margin: 0;
+  font-weight: 400;
 }
 
 /* Studies Section */
@@ -440,8 +511,35 @@ header.sticky-nav .nav-container {
   user-select: text;
   opacity: 0;
   transform: translateX(0);
-  transition: opacity 0.4s ease, transform 0.7s ease;
+  transition: opacity 0.4s ease, transform 0.7s ease, box-shadow 0.3s ease, background 0.3s ease;
   box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
+}
+
+.study-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.study-box:hover {
+  transform: perspective(1000px) rotateX(-2deg) rotateY(5deg) translateY(-10px);
+  box-shadow: 0 30px 60px rgba(82, 176, 255, 0.6);
+  background: #1a2449;
+}
+
+.study-box:hover::before {
+  left: 100%;
+}
+
+.study-box.right-box:hover {
+  transform: perspective(1000px) rotateX(-2deg) rotateY(-5deg) translateY(-10px);
 }
 .study-box.left-box {
   transform: translateX(-350px);
@@ -565,9 +663,34 @@ header.sticky-nav .nav-container {
   opacity: 0;
   transform: scale(0.75);
   border: 1.5px solid transparent;
-  transition: transform 0.35s ease, opacity 0.35s ease, border-color 0.3s ease;
+  transition: transform 0.35s ease, opacity 0.35s ease, border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
   user-select: text;
   position: relative;
+  overflow: hidden;
+}
+
+.experience-box::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(82, 176, 255, 0.1), transparent);
+  transform: rotate(45deg);
+  transition: transform 0.6s ease;
+  opacity: 0;
+}
+
+.experience-box:hover::before {
+  transform: rotate(45deg) translate(50%, 50%);
+  opacity: 1;
+}
+
+.experience-box:hover {
+  background: #1a2449;
+  box-shadow: 0 35px 70px rgba(82, 176, 255, 0.7);
+  transform: scale(1) translateY(-10px);
 }
 .experience-box.visible {
   opacity: 1;
@@ -618,6 +741,9 @@ header.sticky-nav .nav-container {
   max-width: 750px;
   margin: 60px auto 40px;
   padding: 3rem 2rem;
+  background: rgba(23, 32, 62, 0.3);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(82, 176, 255, 0.2);
   border-radius: 30px;
   box-shadow: 0 25px 55px rgba(30, 60, 125, 0.6);
   color: #bed5ff;
@@ -629,7 +755,11 @@ header.sticky-nav .nav-container {
   overflow: hidden;
   transform: translateX(-200px);
   opacity: 0;
-  transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.7s ease;
+  transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.7s ease, box-shadow 0.3s ease;
+}
+
+.support-section:hover {
+  box-shadow: 0 35px 70px rgba(82, 176, 255, 0.4);
 }
 .support-section.visible {
   transform: translateX(0);
@@ -708,13 +838,20 @@ header.sticky-nav .nav-container {
   user-select: text;
   color: #b0bbebcc;
   position: relative;
-  background: #17203e;
+  background: rgba(23, 32, 62, 0.4);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(82, 176, 255, 0.2);
   border-radius: 28px;
   box-shadow: 0 25px 40px #4d7cffbb;
   overflow: hidden;
   transform: translateX(200px);
   opacity: 0;
-  transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.7s ease;
+  transition: transform 0.7s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.7s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.contact-section:hover {
+  box-shadow: 0 35px 60px rgba(82, 176, 255, 0.5);
+  transform: translateX(0) translateY(-5px);
 }
 .contact-section.visible {
   transform: translateX(0);
