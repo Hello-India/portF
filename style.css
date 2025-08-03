@@ -970,232 +970,35 @@ footer {
   letter-spacing: 0.5px;
 }
 
-/* Interactive Premium Dragon Cursor */
-.dragon-cursor {
+/* DragoF Interactive Dragon Cursor */
+.dragof-container {
   position: fixed;
-  width: 80px;
-  height: 80px;
-  pointer-events: none;
-  z-index: 999999;
-  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  transform: translate(-50%, -50%);
-  will-change: transform, opacity;
-  opacity: 0;
-}
-
-.dragon-cursor.visible {
-  opacity: 1;
-}
-
-.dragon-cursor.hiding {
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(0.3) rotate(45deg);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.dragon-body {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transform-origin: center;
-  animation: dragonFloat 3s ease-in-out infinite;
-}
-
-/* Dragon Head */
-.dragon-head {
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 24px;
-  height: 20px;
-  background: linear-gradient(145deg, #52b0ff, #3498db);
-  border-radius: 50% 50% 40% 40%;
-  box-shadow: 0 0 15px rgba(82, 176, 255, 0.6);
-}
-
-.dragon-eyes {
-  position: absolute;
-  top: 4px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 8px;
-}
-
-.eye {
-  width: 4px;
-  height: 4px;
-  background: #ffffff;
-  border-radius: 50%;
-  position: relative;
-  animation: dragonBlink 4s infinite;
-}
-
-.eye::after {
-  content: '';
-  position: absolute;
-  top: 1px;
-  left: 1px;
-  width: 2px;
-  height: 2px;
-  background: #000;
-  border-radius: 50%;
-}
-
-.dragon-mouth {
-  position: absolute;
-  bottom: 2px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 8px;
-  height: 3px;
-  background: #ff6b6b;
-  border-radius: 0 0 50% 50%;
-}
-
-/* Dragon Wings */
-.dragon-wings {
-  position: absolute;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 60px;
-  height: 25px;
-}
-
-.wing {
-  position: absolute;
-  width: 20px;
-  height: 25px;
-  background: linear-gradient(135deg, rgba(82, 176, 255, 0.8), rgba(52, 152, 219, 0.6));
-  border-radius: 50% 20% 50% 80%;
-  transform-origin: bottom center;
-}
-
-.left-wing {
-  left: 5px;
-  animation: wingFlap 0.8s ease-in-out infinite;
-  transform: rotate(-20deg);
-}
-
-.right-wing {
-  right: 5px;
-  animation: wingFlap 0.8s ease-in-out infinite reverse;
-  transform: rotate(20deg) scaleX(-1);
-}
-
-/* Dragon Body */
-.dragon-torso {
-  position: absolute;
-  top: 35px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 16px;
-  height: 20px;
-  background: linear-gradient(145deg, #52b0ff, #3498db);
-  border-radius: 40%;
-  box-shadow: 0 0 10px rgba(82, 176, 255, 0.4);
-}
-
-/* Dragon Tail */
-.dragon-tail {
-  position: absolute;
-  top: 50px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 4px;
-  height: 20px;
-  background: linear-gradient(to bottom, #52b0ff, #3498db);
-  border-radius: 50%;
-  transform-origin: top center;
-  animation: tailSway 2s ease-in-out infinite;
-}
-
-/* Particle Effects */
-.dragon-particles {
-  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   pointer-events: none;
-}
-
-.particle {
-  position: absolute;
-  width: 3px;
-  height: 3px;
-  background: #52b0ff;
-  border-radius: 50%;
+  z-index: 999999;
   opacity: 0;
-  animation: particleFloat 2s ease-in-out infinite;
+  transition: opacity 0.5s ease;
 }
 
-.particle:nth-child(1) {
-  top: 20px;
-  left: 20px;
-  animation-delay: 0s;
+.dragof-container.visible {
+  opacity: 1;
 }
 
-.particle:nth-child(2) {
-  top: 30px;
-  right: 20px;
-  animation-delay: 0.5s;
+.dragof-container.hiding {
+  opacity: 0;
+  transition: opacity 0.8s ease;
 }
 
-.particle:nth-child(3) {
-  bottom: 20px;
-  left: 30px;
-  animation-delay: 1s;
-}
-
-.particle:nth-child(4) {
-  bottom: 30px;
-  right: 25px;
-  animation-delay: 1.5s;
-}
-
-/* Dragon Animations */
-@keyframes dragonFloat {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-5px) rotate(2deg); }
-}
-
-@keyframes wingFlap {
-  0%, 100% { transform: rotate(-20deg) scaleY(1); }
-  50% { transform: rotate(-35deg) scaleY(0.8); }
-}
-
-@keyframes dragonBlink {
-  0%, 90%, 100% { transform: scaleY(1); }
-  95% { transform: scaleY(0.1); }
-}
-
-@keyframes tailSway {
-  0%, 100% { transform: translateX(-50%) rotate(0deg); }
-  25% { transform: translateX(-50%) rotate(10deg); }
-  75% { transform: translateX(-50%) rotate(-10deg); }
-}
-
-@keyframes particleFloat {
-  0% { opacity: 0; transform: translateY(0px) scale(0); }
-  20% { opacity: 1; transform: translateY(-10px) scale(1); }
-  80% { opacity: 1; transform: translateY(-20px) scale(1); }
-  100% { opacity: 0; transform: translateY(-30px) scale(0); }
-}
-
-/* Responsive Dragon */
-@media (hover: hover) and (pointer: fine) {
-  .dragon-cursor {
-    display: block;
-  }
-}
-
-@media (max-width: 768px) {
-  .dragon-cursor {
-    display: none;
-  }
+.dragon-svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  pointer-events: none;
+  filter: drop-shadow(0 0 10px rgba(82, 176, 255, 0.5));
 }
 
 /* Hide default cursor on desktop */
@@ -1203,44 +1006,35 @@ footer {
   body {
     cursor: none;
   }
+  
+  .dragof-container {
+    display: block;
+  }
 }
 
-/* Show cursor on mobile */
+/* Show cursor on mobile and hide dragon */
 @media (max-width: 768px) {
   body {
     cursor: auto;
   }
+  
+  .dragof-container {
+    display: none !important;
+  }
 }
 
-.outer {
-  width: 12px;
-  height: 12px;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #52b0ff;
-  border-radius: 50%;
-  animation: pulse 1.2s cubic-bezier(0.2, 0.8, 0.8, 0.2) infinite;
-  opacity: 0;
-  pointer-events: none;
-  will-change: transform, opacity;
+/* Touch devices */
+@media (pointer: coarse) {
+  body {
+    cursor: auto;
+  }
+  
+  .dragof-container {
+    display: none !important;
+  }
 }
 
-@keyframes pulse {
-  0% {
-    transform: translate(-50%, -50%) scale(0);
-    opacity: 0;
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(0);
-    opacity: 0;
-  }
-}
+
 
 /* Fade Slide Up */
 @keyframes fadeSlideUp {

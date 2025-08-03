@@ -1,45 +1,79 @@
-// Enhanced Interactive Dragon Cursor Logic
-let dragonCursor;
+"use strict";
+
+// DragoF Interactive Dragon Cursor Implementation
+let dragofContainer;
+let dragonScreen;
+let xmlns = "http://www.w3.org/2000/svg";
+let xlinkns = "http://www.w3.org/1999/xlink";
+let width, height;
+let isVisible = false;
 let lastMoveTime = Date.now();
 let hideTimeout;
-let isVisible = false;
-let lastMouseX = 0;
-let lastMouseY = 0;
 let isMouseInWindow = true;
 
+// Dragon configuration
+const N = 40; // Number of dragon segments
+const elems = [];
+const pointer = { x: 0, y: 0 };
+let radm = 0;
+let frm = Math.random();
+let rad = 0;
+
 document.addEventListener('DOMContentLoaded', () => {
-  dragonCursor = document.getElementById('dragonCursor');
+  dragofContainer = document.getElementById('dragofContainer');
+  dragonScreen = document.getElementById('dragonScreen');
   
   // Only initialize on desktop
   if (window.innerWidth > 768) {
-    initDragonCursor();
+    initDragofDragon();
   }
 });
 
-function initDragonCursor() {
-  // Mouse movement tracking
-  document.addEventListener('mousemove', handleMouseMove);
-  document.addEventListener('mouseenter', handleMouseEnter);
-  document.addEventListener('mouseleave', handleMouseLeave);
+function initDragofDragon() {
+  resize();
   
-  // Window focus events for better return functionality
+  // Initialize dragon elements
+  for (let i = 0; i < N; i++) {
+    elems[i] = { use: null, x: width / 2, y: height / 2 };
+  }
+  
+  // Set initial pointer position
+  pointer.x = width / 2;
+  pointer.y = height / 2;
+  radm = Math.min(width, height) / 4 - 20;
+  
+  // Create dragon segments
+  for (let i = 1; i < N; i++) {
+    if (i === 1) prepend("Cabeza", i); // Head
+    else if (i === 8 || i === 14) prepend("Aletas", i); // Wings
+    else prepend("Espina", i); // Body segments
+  }
+  
+  // Event listeners
+  setupEventListeners();
+  
+  // Start animation
+  run();
+}
+
+function setupEventListeners() {
+  window.addEventListener("pointermove", handlePointerMove, false);
+  window.addEventListener("mousemove", handlePointerMove, false);
+  window.addEventListener("resize", handleResize, false);
   window.addEventListener('focus', handleWindowFocus);
   window.addEventListener('blur', handleWindowBlur);
-  
-  // Visibility change for tab switching
+  document.addEventListener('mouseenter', handleMouseEnter);
+  document.addEventListener('mouseleave', handleMouseLeave);
   document.addEventListener('visibilitychange', handleVisibilityChange);
 }
 
-function handleMouseMove(e) {
-  if (!dragonCursor) return;
-  
+function handlePointerMove(e) {
   lastMoveTime = Date.now();
-  lastMouseX = e.clientX;
-  lastMouseY = e.clientY;
   isMouseInWindow = true;
   
-  // Update dragon position with smooth following
-  updateDragonPosition(e.clientX, e.clientY);
+  pointer.x = e.clientX;
+  pointer.y = e.clientY;
+  rad = 0;
   
   // Show dragon if hidden
   if (!isVisible) {
@@ -57,19 +91,15 @@ function handleMouseMove(e) {
   }, 5000);
 }
 
-function handleMouseEnter(e) {
+function handleMouseEnter() {
   isMouseInWindow = true;
-  if (e.clientX && e.clientY) {
-    lastMouseX = e.clientX;
-    lastMouseY = e.clientY;
-    updateDragonPosition(e.clientX, e.clientY);
+  if (!isVisible) {
     showDragon();
   }
 }
 
 function handleMouseLeave() {
   isMouseInWindow = false;
-  // Don't hide immediately, wait a bit in case mouse comes back
   setTimeout(() => {
     if (!isMouseInWindow) {
       hideDragon();
@@ -78,17 +108,14 @@ function handleMouseLeave() {
 }
 
 function handleWindowFocus() {
-  // When window gets focus, check if we should show dragon
-  if (isMouseInWindow && lastMouseX && lastMouseY) {
+  if (isMouseInWindow) {
     setTimeout(() => {
-      updateDragonPosition(lastMouseX, lastMouseY);
       showDragon();
     }, 100);
   }
 }
 
 function handleWindowBlur() {
-  // Hide dragon when window loses focus
   hideDragon();
 }
 
@@ -96,75 +123,102 @@ function handleVisibilityChange() {
   if (document.hidden) {
     hideDragon();
   } else {
-    // Page became visible again
     setTimeout(() => {
-      if (isMouseInWindow && lastMouseX && lastMouseY) {
-        updateDragonPosition(lastMouseX, lastMouseY);
+      if (isMouseInWindow) {
         showDragon();
       }
     }, 200);
   }
 }
 
-function updateDragonPosition(x, y) {
-  if (!dragonCursor) return;
-  
-  // Smooth position update with easing
-  dragonCursor.style.left = x + 'px';
-  dragonCursor.style.top = y + 'px';
-  
-  // Add rotation based on movement direction
-  const deltaX = x - (parseFloat(dragonCursor.style.left) || 0);
-  const deltaY = y - (parseFloat(dragonCursor.style.top) || 0);
-  const angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
-  
-  // Apply subtle rotation to dragon body
-  const dragonBody = dragonCursor.querySelector('.dragon-body');
-  if (dragonBody) {
-    dragonBody.style.transform = `rotate(${angle * 0.1}deg)`;
-  }
+function handleResize() {
+  resize();
+  radm = Math.min(width, height) / 4 - 20;
+}
+
+function resize() {
+  width = window.innerWidth;
+  height = window.innerHeight;
+}
+
+function prepend(use, i) {
+  const elem = document.createElementNS(xmlns, "use");
+  elems[i].use = elem;
+  elem.setAttributeNS(xlinkns, "xlink:href", "#" + use);
+  dragonScreen.prepend(elem);
 }
 
 function showDragon() {
-  if (!dragonCursor) return;
+  if (!dragofContainer) return;
   
   isVisible = true;
-  dragonCursor.classList.add('visible');
-  dragonCursor.classList.remove('hiding');
-  dragonCursor.style.opacity = '1';
+  dragofContainer.classList.add('visible');
+  dragofContainer.classList.remove('hiding');
 }
 
 function hideDragon() {
-  if (!dragonCursor) return;
+  if (!dragofContainer) return;
   
   isVisible = false;
-  dragonCursor.classList.add('hiding');
-  dragonCursor.classList.remove('visible');
-  
-  // Completely hide after animation
-  setTimeout(() => {
-    if (!isVisible) {
-      dragonCursor.style.opacity = '0';
-    }
-  }, 600);
+  dragofContainer.classList.add('hiding');
+  dragofContainer.classList.remove('visible');
 }
+
+const run = () => {
+  requestAnimationFrame(run);
+  
+  if (!isVisible) return;
+  
+  let e = elems[0];
+  const ax = (Math.cos(3 * frm) * rad * width) / height;
+  const ay = (Math.sin(4 * frm) * rad * height) / width;
+  e.x += (ax + pointer.x - e.x) / 10;
+  e.y += (ay + pointer.y - e.y) / 10;
+  
+  for (let i = 1; i < N; i++) {
+    let e = elems[i];
+    let ep = elems[i - 1];
+    const a = Math.atan2(e.y - ep.y, e.x - ep.x);
+    e.x += (ep.x - e.x + (Math.cos(a) * (100 - i)) / 5) / 4;
+    e.y += (ep.y - e.y + (Math.sin(a) * (100 - i)) / 5) / 4;
+    const s = (162 + 4 * (1 - i)) / 50;
+    
+    if (e.use) {
+      e.use.setAttributeNS(
+        null,
+        "transform",
+        `translate(${(ep.x + e.x) / 2},${(ep.y + e.y) / 2}) rotate(${
+          (180 / Math.PI) * a
+        }) translate(${0},${0}) scale(${s},${s})`
+      );
+    }
+  }
+  
+  if (rad < radm) rad++;
+  frm += 0.003;
+  
+  if (rad > 60) {
+    pointer.x += (width / 2 - pointer.x) * 0.05;
+    pointer.y += (height / 2 - pointer.y) * 0.05;
+  }
+};
 
 // Enhanced window resize handling
 window.addEventListener('resize', () => {
   if (window.innerWidth <= 768) {
-    if (dragonCursor) {
+    if (dragofContainer) {
       hideDragon();
     }
   } else if (window.innerWidth > 768) {
-    if (!dragonCursor) {
-      dragonCursor = document.getElementById('dragonCursor');
+    if (!dragofContainer) {
+      dragofContainer = document.getElementById('dragofContainer');
+      dragonScreen = document.getElementById('dragonScreen');
     }
-    initDragonCursor();
+    initDragofDragon();
     
     // Show dragon if mouse is in window
-    if (isMouseInWindow && lastMouseX && lastMouseY) {
+    if (isMouseInWindow) {
       setTimeout(() => {
-        updateDragonPosition(lastMouseX, lastMouseY);
         showDragon();
       }, 300);
     }
@@ -173,11 +227,10 @@ window.addEventListener('resize', () => {
 
 // Periodic check to ensure dragon comes back
 setInterval(() => {
-  if (window.innerWidth > 768 && isMouseInWindow && !isVisible && lastMouseX && lastMouseY) {
+  if (window.innerWidth > 768 && isMouseInWindow && !isVisible) {
     // Check if enough time has passed since last hide
     if (Date.now() - lastMoveTime < 3000) {
       showDragon();
-      updateDragonPosition(lastMouseX, lastMouseY);
     }
   }
 }, 2000);
