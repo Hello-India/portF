@@ -25,7 +25,12 @@
       <div class="logo-container">
         <img src="https://sahildrive.fakefacebook602gmailcom.workers.dev/0:/Welcome%20To%20BinaryQuest/IMG_20241220_022556_811.jpg" alt="Binary Quest Logo" />
       </div>
-      <button id="menu-toggle" aria-label="Toggle menu ≡" aria-expanded="false">∷</button>
+      <div class="nav-controls">
+        <button id="theme-toggle" class="theme-btn" aria-label="Toggle Theme">
+          <span class="theme-icon">🎨</span>
+        </button>
+        <button id="menu-toggle" aria-label="Toggle menu ≡" aria-expanded="false">∷</button>
+      </div>
     </div>
   </header>
 
@@ -219,6 +224,25 @@
     </ul>
   </section>
 
+  <!-- Mini-Game Section -->
+  <section id="game" class="page-section game-section">
+    <h2 class="section-title">Take a Break 🎮</h2>
+    <div class="game-container">
+      <div class="game-info">
+        <p>Click the floating orbs to score points!</p>
+        <div class="game-stats">
+          <span>Score: <span id="gameScore">0</span></span>
+          <span>Time: <span id="gameTime">30</span>s</span>
+        </div>
+      </div>
+      <div class="game-area" id="gameArea">
+        <div class="game-start" id="gameStart">
+          <button id="startGame" class="game-btn">Start Game</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer>
     <p>&copy; 2024 Binary Quest</p>
   </footer>
@@ -260,6 +284,17 @@
       <g id="dragonScreen" />
     </svg>
   </div>
+
+  <!-- Audio System -->
+  <div class="audio-controls">
+    <button id="audio-toggle" class="audio-btn" aria-label="Toggle Audio">
+      <span class="audio-icon">🔊</span>
+      <span class="audio-text">Audio</span>
+    </button>
+  </div>
+
+  <!-- Easter Egg Trigger -->
+  <div class="easter-egg" id="easterEgg"></div>
 
   <script src="dragon.js"></script>
   <script src="script.js"></script>
