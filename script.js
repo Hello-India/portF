@@ -13,7 +13,20 @@ document.addEventListener("DOMContentLoaded", () => {
   setTimeout(() => {
     window.scrollTo(0, 0);
   }, 100);
- // Hamburger menu toggle
+
+  // Initialize Interactive Particle System
+  initParticleSystem();
+  
+  // Initialize Mouse Trail Effect
+  initMouseTrail();
+
+  // Initialize Typing Animation
+  initTypingAnimation();
+
+  // Initialize Parallax Scrolling
+  initParallaxScrolling();
+
+  // Hamburger menu toggle
   const menuToggle = document.getElementById('menu-toggle');
   const overlayMenu = document.getElementById('overlay-menu');
 
@@ -142,3 +155,135 @@ document.addEventListener("DOMContentLoaded", () => {
   contactObserver.observe(contactSection);
 
 });
+
+// Interactive Particle System
+function initParticleSystem() {
+  const particleContainer = document.createElement('div');
+  particleContainer.className = 'particle-container';
+  document.body.appendChild(particleContainer);
+
+  // Create initial particles
+  for (let i = 0; i < 50; i++) {
+    createParticle(particleContainer);
+  }
+
+  // Add new particles periodically
+  setInterval(() => {
+    if (particleContainer.children.length < 50) {
+      createParticle(particleContainer);
+    }
+  }, 2000);
+}
+
+function createParticle(container) {
+  const particle = document.createElement('div');
+  particle.className = 'particle';
+  particle.style.left = Math.random() * 100 + '%';
+  particle.style.animationDelay = Math.random() * 20 + 's';
+  container.appendChild(particle);
+
+  // Remove particle after animation
+  setTimeout(() => {
+    if (particle.parentNode) {
+      particle.remove();
+    }
+  }, 30000);
+}
+
+// Mouse Trail Effect
+function initMouseTrail() {
+  let mouseX = 0;
+  let mouseY = 0;
+  let isMoving = false;
+  let trailTimeout;
+
+  document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    isMoving = true;
+
+    clearTimeout(trailTimeout);
+    trailTimeout = setTimeout(() => {
+      isMoving = false;
+    }, 100);
+
+    if (isMoving && Math.random() > 0.7) {
+      createMouseParticle(mouseX, mouseY);
+    }
+  });
+}
+
+function createMouseParticle(x, y) {
+  const particle = document.createElement('div');
+  particle.className = 'mouse-particle';
+  particle.style.left = x + 'px';
+  particle.style.top = y + 'px';
+  document.body.appendChild(particle);
+
+  // Remove particle after animation
+  setTimeout(() => {
+    if (particle.parentNode) {
+      particle.remove();
+    }
+  }, 1000);
+}
+
+// Typing Animation
+function initTypingAnimation() {
+  const greetingText = document.querySelector('.greeting-card h1');
+  if (!greetingText) return;
+
+  const originalText = greetingText.textContent;
+  const words = originalText.split(' ');
+  greetingText.innerHTML = '';
+
+  let wordIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+
+  function typeWriter() {
+    const currentWord = words[wordIndex];
+    
+    if (isDeleting) {
+      greetingText.textContent = originalText.substring(0, charIndex - 1);
+      charIndex--;
+    } else {
+      greetingText.textContent = originalText.substring(0, charIndex + 1);
+      charIndex++;
+    }
+
+    let typeSpeed = 100;
+
+    if (isDeleting) {
+      typeSpeed /= 2;
+    }
+
+    if (!isDeleting && charIndex === originalText.length) {
+      typeSpeed = 2000; // Pause at end
+      isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      wordIndex = (wordIndex + 1) % words.length;
+      typeSpeed = 500; // Pause before starting next word
+    }
+
+    setTimeout(typeWriter, typeSpeed);
+  }
+
+  setTimeout(typeWriter, 1000);
+}
+
+// Parallax Scrolling
+function initParallaxScrolling() {
+  const parallaxLayers = document.querySelectorAll('.parallax-layer');
+  
+  window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const rate = scrolled * -0.5;
+    
+    parallaxLayers.forEach((layer, index) => {
+      const speed = (index + 1) * 0.2;
+      layer.style.transform = `translateY(${rate * speed}px)`;
+    });
+  });
+}
