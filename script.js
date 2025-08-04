@@ -1,12 +1,26 @@
+// Reset scroll position on page load/refresh
+window.addEventListener('beforeunload', () => {
+  window.scrollTo(0, 0);
+});
+
+// Additional scroll reset for better compatibility
+if (history.scrollRestoration) {
+  history.scrollRestoration = 'manual';
+}
+
 document.addEventListener("DOMContentLoaded", () => {
+  // Force scroll to top on page load
+  setTimeout(() => {
+    window.scrollTo(0, 0);
+  }, 100);
  // Hamburger menu toggle
   const menuToggle = document.getElementById('menu-toggle');
   const overlayMenu = document.getElementById('overlay-menu');
 
   menuToggle.addEventListener('click', () => {
-    const isHidden = overlayMenu.classList.toggle('visible');
-    overlayMenu.classList.toggle('hidden', !isHidden);
-    menuToggle.setAttribute('aria-expanded', isHidden);
+    const isVisible = overlayMenu.classList.toggle('visible');
+    overlayMenu.classList.toggle('hidden', !isVisible);
+    menuToggle.setAttribute('aria-expanded', isVisible);
   });
 
   // Close menu when clicking any menu link (optional for better UX)
@@ -17,7 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
       menuToggle.setAttribute('aria-expanded', false);
     });
   });
-  
+
   // Scroll down button smooth scroll
   const scrollBtn = document.getElementById("scroll-down-btn");
   scrollBtn.addEventListener("click", () => {
@@ -35,6 +49,14 @@ document.addEventListener("DOMContentLoaded", () => {
     image.classList.add("clear");          // Unblur image
   });
 
+  // Reset image blur when clicking outside or scrolling away
+  document.addEventListener("click", (e) => {
+    if (!aboutImageWrapper.contains(e.target)) {
+      overlay.classList.remove("hidden");
+      image.classList.remove("clear");
+    }
+  });
+
 
   // About section fade slide up on scroll
   const aboutText = aboutSection.querySelector(".about-text");
@@ -46,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
         entry.target.classList.remove("visible");
         // Also reset image blur and overlay if scrolled up
         overlay.classList.remove("hidden");
-        aboutImageWrapper.classList.remove("clear");
+        image.classList.remove("clear");
       }
     });
   }, {
