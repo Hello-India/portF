@@ -1,0 +1,120 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Dancing+Script&family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap');
+
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #0a0a0a;
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+/* Movement classes like shx404 */
+.movement {
+  transition: all 0.3s ease;
+}
+
+.movement:hover {
+  transform: translateY(-2px);
+}
+
+/* Navigation styles */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(10, 10, 10, 0.8);
+  backdrop-filter: blur(10px);
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #52b0ff;
+}
+
+.line {
+  display: flex;
+  gap: 20px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #52b0ff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.item img {
+  width: 15px;
+  height: 15px;
+}
+
+/* Audio elements */
+audio {
+  display: none;
+}
+
+/* Main content */
+main {
+  min-height: 100vh;
+  padding-top: 80px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #52b0ff;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #83c0ff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  nav {
+    padding: 15px;
+  }
+  
+  .title {
+    font-size: 20px;
+  }
+  
+  .line {
+    gap: 15px;
+  }
+  
+  .item {
+    font-size: 12px;
+  }
+}
